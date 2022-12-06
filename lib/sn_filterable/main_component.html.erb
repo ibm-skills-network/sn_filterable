@@ -1,0 +1,97 @@
+<% url = @url || url_for %>
+<div x-data="{ filteringForm: $refs.filtering_form, entireComponenet: $el, filtersLoading: false, filtersPopupOpen: false, sidebarGapTarget: null }">
+  <%= content_tag :form,
+                  "x-ref": "filtering_form",
+                  "action": url,
+                  "method": "get",
+                  "data-turbo-frame": @frame_id,
+                  "class": "relative",
+                  "@submit": "filtersLoading = true" do %>
+    <div class="absolute w-full h-full pointer-events-none">
+      <div class="absolute flex flex-col sm:grid sm:grid-cols-3 gap-4 w-full pointer-events-none">
+        <div class="sm:hidden h-14"></div>
+        <% if @search_filter_name.present? %>
+          <% if search? %>
+            <%= search %>
+          <% else %>
+            <div class="col-span-2 col-start-2 md:ml-48 lg:ml-64 h-12 pointer-events-auto">
+              <%= render search_field %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <% if @show_sidebar %>
+        <div class="mt-16 h-full pointer-events-auto">
+          <div class="h-full" x-init="sidebarGapTarget = $el">
+            <div x-show="filtersPopupOpen" class="fixed top-0 left-0 right-0 bottom-0 z-10 sm:z-0 bg-gray-600 bg-opacity-75 sm:hidden" @click="filtersPopupOpen = false" x-cloak></div>
+            <div x-show="filtersPopupOpen" class="fixed bottom-0 h-2/3 z-10 sm:z-0 left-0 w-full bg-white pt-4 sm:sticky sm:!block row-span-2 shrink-0 mr-4 self-start sm:top-16 lg:w-64 sm:w-52 sm:pt-2 sm:pb-6 sm:overflow-y-auto sm:h-[70vh] sm:max-h-[calc(100vh_-_5rem)]" x-cloak>
+            <div class="absolute top-0 right-0 -mt-12 mb-2 mr-2" x-show="filtersPopupOpen">
+              <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" @click="filtersPopupOpen = false">
+                <span class="sr-only">Close filters</span>
+                <%= heroicon "x", variant: :outline, options: { class: "h-6 w-6 text-white" } %>
+              </button>
+            </div>
+            <div name="Filter Options" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" class="overflow-y-auto max-h-full">
+              <% @filters.each do |filter| %>
+                <%= render Filterable::CategoryComponent.new(title: filter[:title], open: @filtered.queries.dig("filter", filter.try(:[], :filter_name)).present?) do |c| %>
+                  <% c.filter(filtered: @filtered, filter: filter) %>
+                <% end %>
+              <% end %>
+              <%= render Filterable::CategoryComponent.new(title: t("shared.filterable.results_per_page"), open: @filtered.queries.dig("per").present?) do %>
+                <fieldset class="pt-2" x-data="{ wasInteracted: false }">
+                  <% ([@filtered.items.default_per_page] | [10, 25, 50]).sort.each do |value| %>
+                    <div class="relative flex items-start px-4 transition-colors hover:bg-gray-200 text-gray-700 hover:text-gray-900">
+                      <div class="min-w-0 flex-1 flex-grow">
+                        <%= content_tag :label, value, class: "block py-2 pr-4 text-gray-600 select-none w-full cursor-pointer", for: "per-#{value}" %>
+                      </div>
+                      <div class="my-2 flex items-center">
+                        <% selected_explcitly = value == @filtered.queries["per"].to_i %>
+                        <% selected_by_default = @filtered.queries["per"].blank? && value == @filtered.items.default_per_page %>
+                        <%= content_tag :input, "",
+                                        class: "focus:ring-purple-400 cursor-pointer h-5 w-5 text-purple-500 bg-purple-100 border-0",
+                                        type: "radio",
+                                        id: "per-#{value}",
+                                        "x-data": { iteracted: selected_explcitly }.to_json,
+                                        ":name": "wasInteracted && 'per'",
+                                        value: value,
+                                        checked: selected_explcitly || selected_by_default,
+                                        "@click": "wasInteracted = true; $nextTick(() => { $el.checked = true; filteringForm.requestSubmit() })"
+                        %>
+                      </div>
+                    </div>
+                  <% end %>
+                </fieldset>
+              <% end %>
+            </div>
+          </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag @frame_id, "data-turbo-action": "advance" do %>
+    <%= content_tag :input, "", type: "hidden", name: "sort", value: @filtered.queries["sort"] if @filtered.queries["sort"].present? %>
+    <%= content_tag :input, "", type: "hidden", name: "order", value: @filtered.queries["order"] if @filtered.queries["order"].present? %>
+
+    <div class="flex flex-col sm:grid sm:grid-cols-3 gap-4 pointer-events-none">
+      <div class="sm:hidden flex items-end h-14 pointer-events-auto">
+        <%= render Filterable::FilterButtonComponent.new(filtered: @filtered, filters: @filters) %>
+      </div>
+      <% if @search_filter_name.present? %>
+        <div class="col-span-2 col-start-2 md:ml-64 h-12 pointer-events-none"></div>
+      <% end %>
+    </div>
+
+    <%= render Filterable::ChipsComponent.new(filtered: @filtered, filters: @filters, url: url) %>
+
+    <div class="flex flex-row" x-init="filtersLoading = false">
+      <% if @show_sidebar %>
+        <div class="lg:w-64 sm:w-52"></div>
+      <% end %>
+      <div class="relative flex-1 <%= "sm:ml-4" if @show_sidebar %>">
+        <%= content %>
+      </div>
+    </div>
+  <% end %>
+</div>

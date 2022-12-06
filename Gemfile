@@ -7,6 +7,10 @@ gemspec
 
 gem "rake", "~> 13.0"
 
-gem "rspec", "~> 3.0"
+gem "rspec-rails"
 
 gem "rubocop", "~> 1.21"
+
+gem "with_model"
+
+gem "factory_bot_rails", "~> 6"

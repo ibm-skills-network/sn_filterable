@@ -1,0 +1,11 @@
+<%= content_tag :fieldset, class: "w-full text-xs lg:text-sm app-word-break",
+                "x-data": { open: @open }.to_json do %>
+  <button class="flex border-b justify-between w-full px-4 py-3 font-medium text-left text-gray-900 transition-colors hover:bg-gray-200 rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-75" type="button" @click="open = !open">
+    <span><%= @title %></span>
+    <%= heroicon "chevron-down", options: { class: "transform w-5 h-5 text-gray-500 transition ease-out", ":class": "open && 'rotate-180'"} %>
+  </button>
+  <div class="pb-2 text-gray-500" x-show="open" x-cloak>
+    <%= filter %>
+    <%= content %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="mt-1 relative rounded-md shadow-sm">
+  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+    <%= heroicon "search", options: { class: "h-5 w-5 text-gray-400" } %>
+  </div>
+  <%= content_tag :input, "",
+                  class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md",
+                  placeholder: "Search...",
+                  type: "search",
+                  ":name": "hasValue && `filter[#{@filter_name}]`",
+                  value: @filtered.queries.dig("filter", @filter_name),
+                  "x-data": "filteringSearchInput(#{@filter_name.to_json})",
+                  "x-init": "onInit()",
+                  "@input": "onUpdate(false)",
+                  "@keyup.enter": "onUpdate(true)",
+                  "@search": "onUpdate(true)" %>
+</div>

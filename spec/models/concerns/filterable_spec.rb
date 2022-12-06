@@ -8,7 +8,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
     end
 
     model do
-      include Filterable # rubocop:disable RSpec/DescribedClass
+      include SnFilterable # rubocop:disable RSpec/DescribedClass
 
       BasicFilterableTestModel::FILTER_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
         "name": :filter_by_name,
@@ -513,7 +513,7 @@ RSpec.describe SnFilterable::WhereHelper do
   end
 end
 
-RSpec.describe Filterable::PolymorphicHelper, type: :model do
+RSpec.describe SnFilterable::PolymorphicHelper, type: :model do
   describe ".joins" do
     subject { described_class.joins(relation, polymorphic_association, models) }
 

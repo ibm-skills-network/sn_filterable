@@ -3,6 +3,7 @@
 require "rails"
 require "rails/all"
 require "with_model"
+require "sn_filterable"
 require "factory_bot"
 
 RSpec.configure do |config|

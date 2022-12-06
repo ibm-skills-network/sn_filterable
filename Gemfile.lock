@@ -220,10 +220,10 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
-  factory_bot_rails (~> 6)
-  rake (~> 13.0)
+  factory_bot_rails
+  rake
   rspec-rails
-  rubocop (~> 1.21)
+  rubocop
   sn_filterable!
   with_model
 

@@ -4,6 +4,7 @@ PATH
     sn_filterable (0.1.0)
       heroicon
       kaminari
+      pg
       pg_search
       view_component
 
@@ -125,6 +126,7 @@ GEM
     parallel (1.22.1)
     parser (3.1.3.0)
       ast (~> 2.4.1)
+    pg (1.4.5)
     pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
@@ -228,4 +230,4 @@ DEPENDENCIES
   with_model
 
 BUNDLED WITH
-   2.3.26
+   2.3.11

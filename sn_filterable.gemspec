@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL data."
   spec.homepage = "https://github.com/ibm-skills-network/sn_filterable"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
@@ -40,6 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "view_component"
   spec.add_dependency "kaminari"
   spec.add_dependency "heroicon" # TODO: Convert to inline SVG to avoid additional gem dependency
+  spec.add_dependency "pg"
   spec.add_dependency "pg_search"
 
   spec.add_development_dependency "rake"
@@ -47,7 +48,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "with_model"
   spec.add_development_dependency "factory_bot_rails"
-  # spec.add_development_dependency "pg"
   # spec.add_development_dependency "rails"
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

@@ -6,6 +6,10 @@ require "with_model"
 require "sn_filterable"
 require "factory_bot"
 
+ActiveRecord::Base.establish_connection(
+  "postgresql://postgres:password@localhost:5432/sn_filterable_test?schema=public&connection_limit=5"
+)
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"

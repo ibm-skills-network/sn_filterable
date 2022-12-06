@@ -8,7 +8,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
     end
 
     model do
-      include SnFilterable # rubocop:disable RSpec/DescribedClass
+      include SnFilterable::Filterable # rubocop:disable RSpec/DescribedClass
 
       BasicFilterableTestModel::FILTER_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
         "name": :filter_by_name,
@@ -43,7 +43,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
     end
 
     model do
-      include Filterable # rubocop:disable RSpec/DescribedClass
+      include SnFilterable::Filterable # rubocop:disable RSpec/DescribedClass
     end
   end
 
@@ -54,7 +54,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
     end
 
     model do
-      include Filterable # rubocop:disable RSpec/DescribedClass
+      include SnFilterable::Filterable # rubocop:disable RSpec/DescribedClass
 
       FilterOnlyFilterableTestModel::FILTER_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
         "name": :filter_by_name
@@ -71,7 +71,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
     end
 
     model do
-      include Filterable # rubocop:disable RSpec/DescribedClass
+      include SnFilterable::Filterable # rubocop:disable RSpec/DescribedClass
 
       SortOnlyFilterableTestModel::SORT_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
         "name": :sort_by_name
@@ -307,7 +307,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
       end
 
       model do
-        include Filterable # rubocop:disable RSpec/DescribedClass
+        include SnFilterable::Filterable # rubocop:disable RSpec/DescribedClass
 
         SortWithExplicitReversedFilterableTestModel::SORT_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
           "name": :sort_by_name

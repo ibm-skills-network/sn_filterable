@@ -1,0 +1,42 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  build:
+    name: RSpec
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14-alpine
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: portal_manager_test
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+    - name: Setup Database
+      env:
+        RAILS_ENV: test
+      run: bin/rails db:create db:schema:load
+    - name: Test with rspec
+      env:
+        RAILS_ENV: test
+      run: bundle exec rspec spec
+    - name: Archive RSpec screenshots
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: rspec-screenshots
+        path: tmp/screenshots

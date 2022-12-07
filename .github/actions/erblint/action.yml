@@ -1,0 +1,63 @@
+name: 'Run erb-lint with reviewdog'
+description: '🐶 Run erb-lint with reviewdog on pull requests to improve code review experience.'
+inputs:
+  github_token:
+    description: 'GITHUB_TOKEN'
+    default: ${{ github.token }}
+  erblint_version:
+    description: 'erb-lint version'
+  rubocop_extensions:
+    description: 'Rubocop extensions'
+    default: 'rubocop-rails rubocop-performance rubocop-rspec rubocop-i18n rubocop-rake'
+  use_bundler:
+    description: "Run erb-lint with bundle exec. Default: `false`"
+    default: 'false'
+  tool_name:
+    description: 'Tool name to use for reviewdog reporter'
+    default: 'erb-lint'
+  level:
+    description: 'Report level for reviewdog [info,warning,error]'
+    default: 'error'
+  reporter:
+    description: |
+      Reporter of reviewdog command [github-pr-check,github-check,github-pr-review].
+      Default is github-pr-check.
+    default: 'github-pr-check'
+  filter_mode:
+    description: |
+      Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
+      Default is added.
+    default: 'added'
+  reviewdog_flags:
+    description: 'Additional reviewdog flags'
+    default: ''
+  workdir:
+    description: "The directory from which to look for and run erb-lint. Default '.'"
+    default: '.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v23.1
+      with:
+        files: |
+          **/*.erb
+    - run: .github/actions/erblint/script.sh
+      shell: sh
+      env:
+        REVIEWDOG_VERSION: v0.14.1
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_RUBOCOP_EXTENSIONS: ${{ inputs.rubocop_extensions }}
+        INPUT_ERBLINT_VERSION: ${{ inputs.erblint_version }}
+        INPUT_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        INPUT_TOOL_NAME: ${{ inputs.tool_name }}
+        INPUT_LEVEL: ${{ inputs.level }}
+        INPUT_REPORTER: ${{ inputs.reporter }}
+        INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
+        INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
+        INPUT_WORKDIR: ${{ inputs.workdir }}
+        INPUT_USE_BUNDLER: ${{ inputs.use_bundler }}
+branding:
+  icon: 'check-circle'
+  color: 'blue'

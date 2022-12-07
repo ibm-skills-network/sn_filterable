@@ -1,3 +1,6 @@
+require "view_component"
+require "turbo-rails"
+
 module SnFilterable
   # Renders the filtering interface
   #

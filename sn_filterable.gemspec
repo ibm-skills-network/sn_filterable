@@ -42,6 +42,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pg"
   spec.add_dependency "pg_search"
   spec.add_dependency "view_component"
+  spec.add_dependency "turbo-rails"
 
   spec.add_development_dependency "factory_bot_rails"
   spec.add_development_dependency "faker"

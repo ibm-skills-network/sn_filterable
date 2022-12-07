@@ -5,10 +5,14 @@ require "rails/all"
 require "with_model"
 require "sn_filterable"
 require "factory_bot"
+require "faker"
+require "kaminari"
 
 ActiveRecord::Base.establish_connection(
   "postgresql://postgres:password@localhost:5432/sn_filterable_test?schema=public&connection_limit=5"
 )
+
+FactoryBot.reload
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

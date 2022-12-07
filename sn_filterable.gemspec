@@ -48,6 +48,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "with_model"
   spec.add_development_dependency "factory_bot_rails"
+  spec.add_development_dependency "faker"
   # spec.add_development_dependency "rails"
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

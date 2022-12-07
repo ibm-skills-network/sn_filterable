@@ -9,7 +9,7 @@
 # require_relative "sn_filterable/main_component"
 # require_relative "sn_filterable/search_component"
 require_relative "sn_filterable/filterable"
-# require_relative "models/filtered"
+require_relative "models/filtered"
 # require "active_support"
 # require "pg_search"
 

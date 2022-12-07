@@ -1,4 +1,4 @@
-module Filterable
+module SnFilterable
   # Renders the filtering interface
   #
   # ## Filters' info

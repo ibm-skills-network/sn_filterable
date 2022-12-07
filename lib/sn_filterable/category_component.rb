@@ -1,4 +1,4 @@
-module Filterable
+module SnFilterable
   # Renders a category to be displayed in the filtering sidebar/popup.
   # Simple view component, logic to display filters should render a [:filter] (see [Filterable::FilterCategoryComponent])
   class CategoryComponent < ViewComponent::Base

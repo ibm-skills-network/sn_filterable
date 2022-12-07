@@ -1,4 +1,4 @@
-module Filterable
+module SnFilterable
   # Renders the optional search bar
   class SearchComponent < ViewComponent::Base
     include HeroiconHelper

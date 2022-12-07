@@ -1,4 +1,4 @@
-module Filterable
+module SnFilterable
   # Component for a filter's category for the filters sidebar
   class FilterCategoryComponent < ViewComponent::Base
     include HeroiconHelper

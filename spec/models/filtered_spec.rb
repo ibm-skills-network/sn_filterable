@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SnFiltered, type: :model do
+RSpec.describe Filtered, type: :model do
   with_model :BasicFilterableTestModel, scope: :all do
     table do |t|
       t.string :name
@@ -8,7 +8,7 @@ RSpec.describe SnFiltered, type: :model do
     end
 
     model do
-      include Filterable
+      include SnFilterable::Filterable
 
       BasicFilterableTestModel::FILTER_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
         "name": :filter_by_name,

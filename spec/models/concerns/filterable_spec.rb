@@ -517,7 +517,7 @@ RSpec.describe SnFilterable::PolymorphicHelper, type: :model do
   describe ".joins" do
     subject { described_class.joins(relation, polymorphic_association, models) }
 
-    let(:relation) { User.all } # Any model will work here
+    let(:relation) { Portal.all } # Any model will work here
     let(:polymorphic_association) { "associationname" }
     let(:models) { [Portal] }
 

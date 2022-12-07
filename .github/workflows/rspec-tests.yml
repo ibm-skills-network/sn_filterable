@@ -27,11 +27,11 @@ jobs:
     - name: Setup Database
       env:
         RAILS_ENV: test
-      run: spec/dummy/bin/rails db:create db:schema:load
+      run: cd spec/dummy && bin/rails db:create db:schema:load
     - name: Test with rspec
       env:
         RAILS_ENV: test
-      run: bundle exec rspec spec
+      run: bundle exec rspec
     - name: Archive RSpec screenshots
       if: always()
       uses: actions/upload-artifact@v3

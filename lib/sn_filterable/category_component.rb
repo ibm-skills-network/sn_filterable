@@ -8,7 +8,7 @@ module Filterable
 
     # @param [String] title Optional, the title of the category, will default to the filter's title (if specified)
     # @param [Boolean] open Optional, determines if the category should be opened by default
-    def initialize(title: nil, open: false) # rubocop:disable Lint/MissingSuper
+    def initialize(title: nil, open: false)
       @title = title
       @open = open
     end

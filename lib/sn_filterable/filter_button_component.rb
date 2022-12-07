@@ -3,7 +3,7 @@ module Filterable
   class FilterButtonComponent < ViewComponent::Base
     # @param [Filtered] filtered The filtered instance
     # @param [Array<Hash>] filters An array of the filters' info
-    def initialize(filtered:, filters:) # rubocop:disable Lint/MissingSuper
+    def initialize(filtered:, filters:)
       @filtered = filtered
       @filters = filters
       @count = active_filter_count

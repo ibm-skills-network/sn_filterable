@@ -6,7 +6,7 @@ module Filterable
     # @param [Filtered] filtered The filtered instance
     # @param [Array<Hash>] filters An array of the filters' info
     # @param [String] url The base URL of where the filters are displayed
-    def initialize(filtered:, filters:, url:) # rubocop:disable Lint/MissingSuper
+    def initialize(filtered:, filters:, url:)
       @filtered = filtered
       @filters = filters
       @url = url

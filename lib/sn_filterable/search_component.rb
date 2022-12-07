@@ -5,7 +5,7 @@ module Filterable
 
     # @param [Filtered] filtered The filtered instance
     # @param [String] filter_name The search filter's parameter name
-    def initialize(filtered:, filter_name:) # rubocop:disable Lint/MissingSuper
+    def initialize(filtered:, filter_name:)
       @filtered = filtered
       @filter_name = filter_name
     end

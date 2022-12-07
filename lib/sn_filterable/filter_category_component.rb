@@ -6,7 +6,7 @@ module Filterable
 
     # @param [Filtered] filtered The filtered instance
     # @param [Hash] filters The filter's info
-    def initialize(filtered:, filter:) # rubocop:disable Lint/MissingSuper
+    def initialize(filtered:, filter:)
       @filtered = filtered
       @filter = filter
     end

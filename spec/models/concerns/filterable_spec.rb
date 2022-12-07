@@ -347,7 +347,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
       end
 
       model do
-        include Filterable # rubocop:disable RSpec/DescribedClass
+        include SnFilterable::Filterable # rubocop:disable RSpec/DescribedClass
 
         ArrayFilterFilterableTestModel::FILTER_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
           "name": :filter_by_name,

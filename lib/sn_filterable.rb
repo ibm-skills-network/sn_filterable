@@ -6,7 +6,7 @@
 # require_relative "sn_filterable/chips_component"
 # require_relative "sn_filterable/filter_button_component"
 # require_relative "sn_filterable/filter_category_component"
-require_relative "sn_filterable/main_component"
+require_relative "sn_filterable/railtie"
 # require_relative "sn_filterable/search_component"
 require_relative "sn_filterable/filterable"
 require_relative "models/filtered"

@@ -517,9 +517,9 @@ RSpec.describe SnFilterable::PolymorphicHelper, type: :model do
   describe ".joins" do
     subject { described_class.joins(relation, polymorphic_association, models) }
 
-    let(:relation) { Portal.all } # Any model will work here
+    let(:relation) { DummyModel.all } # Any model will work here
     let(:polymorphic_association) { "associationname" }
-    let(:models) { [Portal] }
+    let(:models) { [DummyModel] }
 
     it "creates a valid SQL query", :aggregate_failures do
       expect(subject.to_sql).to include(generate_join_sql(models[0])) # rubocop:disable RSpec/NamedSubject
@@ -538,9 +538,9 @@ RSpec.describe SnFilterable::PolymorphicHelper, type: :model do
 
   describe ".coalesce" do
     it "creates a valid function" do
-      actual_output = described_class.coalesce([Portal], "some_column")
+      actual_output = described_class.coalesce([DummyModel], "some_column")
 
-      expect(actual_output).to eq("coalesce(\"portals\".\"some_column\")")
+      expect(actual_output).to eq("coalesce(\"dummy_models\".\"some_column\")")
     end
   end
 end

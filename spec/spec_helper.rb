@@ -7,6 +7,7 @@ require "sn_filterable"
 require "factory_bot"
 require "faker"
 require "kaminari"
+require_relative "dummy/app/models/dummy_model"
 
 ActiveRecord::Base.establish_connection(
   "postgresql://postgres:password@localhost:5432/sn_filterable_test?schema=public&connection_limit=5"

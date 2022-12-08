@@ -1,7 +1,7 @@
 module SnFilterable
   # Renders the optional search bar
   class SearchComponent < ViewComponent::Base
-    include HeroiconHelper
+    include Heroicon::Engine.helpers
 
     # @param [Filtered] filtered The filtered instance
     # @param [String] filter_name The search filter's parameter name

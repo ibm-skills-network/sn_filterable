@@ -4,6 +4,7 @@ require_relative "sn_filterable/version"
 require_relative "sn_filterable/railtie"
 require_relative "sn_filterable/filterable"
 require_relative "models/filtered"
+require "sn_filterable/engine"
 require "kaminari"
 
 module SnFilterable

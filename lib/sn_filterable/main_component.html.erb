@@ -7,7 +7,9 @@
                   "data-turbo-frame": @frame_id,
                   "class": "relative",
                   "@submit": "filtersLoading = true" do %>
+    <div @click="console.log('out')">My Outer Div</div>
     <div class="absolute w-full h-full pointer-events-none">
+      <div @click="console.log('in top')">My Inner Top Div</div>
       <div class="absolute flex flex-col sm:grid sm:grid-cols-3 gap-4 w-full pointer-events-none">
         <div class="sm:hidden h-14"></div>
         <% if @search_filter_name.present? %>
@@ -20,6 +22,7 @@
           <% end %>
         <% end %>
       </div>
+      <div @click="console.log('in bot')">My Inner Bottom Div</div>
       <% if @show_sidebar %>
         <div class="mt-16 h-full pointer-events-auto">
           <div class="h-full" x-init="sidebarGapTarget = $el">

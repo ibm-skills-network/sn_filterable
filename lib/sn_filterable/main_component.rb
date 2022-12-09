@@ -1,5 +1,3 @@
-require "view_component"
-
 module SnFilterable
   # Renders the filtering interface
   #

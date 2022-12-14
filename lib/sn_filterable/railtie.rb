@@ -1,5 +1,3 @@
-require "view_component"
-
 module SnFilterable
   class Railtie < ::Rails::Railtie
     initializer "sn-filterable.load_components" do

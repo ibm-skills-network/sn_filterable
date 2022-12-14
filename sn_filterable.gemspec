@@ -27,10 +27,6 @@ Gem::Specification.new do |spec|
       (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
     end
   end
-  # spec.files = [
-  #   "lib/sn_filterable.rb",
-  #   "lib/sn_filterable/filterable.rb"
-  # ]
 
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
@@ -44,7 +40,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "tailwindcss-rails"
   spec.add_dependency "turbo-rails"
   spec.add_dependency "view_component"
-
 
   spec.add_development_dependency "factory_bot_rails"
   spec.add_development_dependency "faker"

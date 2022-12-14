@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Chase McDougall"]
   spec.email = ["chasemcdougall@hotmail.com"]
 
-  spec.summary = "Skills Network - Item filterting component"
+  spec.summary = "Skills Network - Item filtering component"
   spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL data."
   spec.homepage = "https://github.com/ibm-skills-network/sn_filterable"
   spec.license = "MIT"

@@ -1,6 +1,5 @@
 require "view_component"
 require "view_component/base"
-require "view_component/all"
 
 module SnFilterable
   # Renders the filtering interface

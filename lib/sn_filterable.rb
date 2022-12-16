@@ -11,7 +11,7 @@ require "kaminari"
 module SnFilterable
   include SnFilterable::Filterable
 
-  def load_js
+  def self.load_js
     File.read(File.join(Gem.loaded_specs['sn_filterable'].full_gem_path, 'app', 'assets', 'javascripts', 'sn_filtering.js'))
   end
 

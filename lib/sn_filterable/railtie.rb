@@ -1,16 +1,5 @@
 module SnFilterable
   class Railtie < ::Rails::Railtie
-    initializer "sn-filterable.load_components" do
-      ActiveSupport.on_load(:action_view) do
-        require_relative "main_component"
-        require_relative "search_component"
-        require_relative "category_component"
-        require_relative "filter_category_component"
-        require_relative "filter_button_component"
-        require_relative "chips_component"
-        require_relative "base_components/button_component"
-      end
-    end
     initializer "sn-filterable.view_helpers" do |app|
       ActiveSupport.on_load(:action_view) do
         # include Heroicon::Engine.helpers

@@ -76,7 +76,7 @@
 
     <div class="flex flex-col sm:grid sm:grid-cols-3 gap-4 pointer-events-none">
       <div class="sm:hidden flex items-end h-14 pointer-events-auto">
-        <%= render SnFilterable::BaseComponents::FilterButtonComponent.new(filtered: @filtered, filters: @filters) %>
+        <%= render SnFilterable::FilterButtonComponent.new(filtered: @filtered, filters: @filters) %>
       </div>
       <% if @search_filter_name.present? %>
         <div class="col-span-2 col-start-2 md:ml-64 h-12 pointer-events-none"></div>

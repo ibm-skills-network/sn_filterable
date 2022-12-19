@@ -2,7 +2,7 @@
 
 Welcome to the Skills Network Filterable gem!
 
-This gem provides a method for developers to quickly implement a live-reloading search and filter foor their data with live-reloading.
+This gem provides a method for developers to quickly implement a customizable search and filter for their data with live-reloading.
 
 Live examples of the gem's use can be viewed at [Skills Network's Author Workbench](https://author.skills.network), primarily under the [organizations tab](https://author.skills.network/organizations)
 
@@ -12,7 +12,7 @@ Live examples of the gem's use can be viewed at [Skills Network's Author Workben
 
 There are a couple key requirements for your app to be compatible with this gem:
 
-1. You need to have [AlpineJS](https://alpinejs.dev/essentials/installation) loaded into the page you plan to use SnFilterable
+1. You need to have [AlpineJS](https://alpinejs.dev/essentials/installation) loaded into the page where you plan to use SnFilterable
 2. Your app needs to be running [TailwindCSS](https://tailwindcss.com/docs/guides/ruby-on-rails)
 
 ## Installation

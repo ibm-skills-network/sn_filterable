@@ -73,12 +73,18 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 This gem using [RSpec](https://rspec.info) for testing. Tests can be running locally by first setting up the dummy database/app as follows:
 
-1. `docker compose up -d`
-2. `cd spec/dummy`
-3. `rails db:create`
-4. `rails db:schema:load`
+```bash
+docker compose up -d
+cd spec/dummy
+rails db:create
+rails db:schema:load
+```
 
-Now the test suite can be run from the project root using `bundle exec rspec`
+
+Now the test suite can be run from the project root using 
+```bash
+bundle exec rspec
+```
 
 ## Contributing
 

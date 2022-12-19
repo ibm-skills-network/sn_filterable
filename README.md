@@ -86,8 +86,8 @@ class Model < ApplicationRecord
 
 
     SORT_SCOPE_MAPPINGS = {
-        "name": :sort_by_name
-        # 'name' will be referenced from the controller
+        "sort_name": :sort_by_name
+        # 'sort_name' will be referenced from the controller
     }.freeze
 
     scope :filter_by_name, ->(search) { where(SnFilterable::WhereHelper.contains("name", search)) }
@@ -101,7 +101,7 @@ end
 2. Setting up the controller
 ```ruby
 # models_controller.rb
-@search = Model.filter(params:, default_sort: ["name", :asc].freeze)
+@search = Model.filter(params:, default_sort: ["sort_name", :asc].freeze)
 @models = @search.items
 ```
 

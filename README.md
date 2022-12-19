@@ -24,9 +24,10 @@ gem "sn_filterable", git: "https://github.com/ibm-skills-network/sn_filterable.g
 ```
 
 And then execute:
+```bash
+bundle install
+```
 
-    $ bundle install
-    
 ##### Make the following adjustments to your codebase
 
 1. Add the necessary translations and customize as desired

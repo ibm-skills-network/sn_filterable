@@ -71,6 +71,13 @@ module.exports = {
 
 ## Usage
 
+
+##### The MainComponent: Search Bar and sidebar
+
+The MainComponent is what is demo'd in the introduction. It consists of the search bar and a sidebar for filters.
+
+If you only wish to use the Search bar an optional `show_sidebar: false` parameter can be passed to `SnFilterable::MainComponent` in the view.
+
 There are three components which work to provide the text search functionality:
 
 1. Filters in the given model:
@@ -99,6 +106,7 @@ end
 ```
 
 2. Setting up the controller
+* While `:default_sort` is an optional parameter it is recommended
 ```ruby
 # models_controller.rb
 @search = Model.filter(params:, default_sort: ["sort_name", :asc].freeze)

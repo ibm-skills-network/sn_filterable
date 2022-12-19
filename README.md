@@ -20,9 +20,7 @@ Or install it yourself as:
 
     $ gem install sn_filterable
     
-### Make the following adjustments to your codebase
-
-Changes can be automated using `insert command here`
+##### Make the following adjustments to your codebase
 
 1. Add the necessary translations and customize as desired
 ```yaml
@@ -37,6 +35,30 @@ en:
         pagination:
             previous_page: "Previous"
             next_page: "Next"
+```
+
+2. Require the necessary JavaScript (dependent on AlpineJS being included with your App)
+```javascript
+// application.js converted to application.js.erb
+
+// other imports
+<%= SnFilterable.load_js %>
+```
+
+3. Configure your app's Tailwind to scan the gem
+```javascript
+// tailwind.config.js
+const execSync = require('child_process').execSync;
+const output = execSync('bundle show sn_filterable', { encoding: 'utf-8' });
+
+module.exports = {
+  // other config settings
+  content: [
+    // other content
+    output.trim() + '/app/**/*.{erb,rb}'
+  ]
+  // other config settings
+};
 ```
 
 ## Usage

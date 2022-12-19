@@ -19,6 +19,25 @@ And then execute:
 Or install it yourself as:
 
     $ gem install sn_filterable
+    
+### Make the following adjustments to your codebase
+
+Changes can be automated using `insert command here`
+
+1. Add the necessary translations and customize as desired
+```yaml
+# en.yml
+en:
+    # Other translations
+    shared:
+        filterable:
+        view_filter_button: "View filters"
+        results_per_page: "Results per page"
+        clear_all: "Clear all"
+        pagination:
+            previous_page: "Previous"
+            next_page: "Next"
+```
 
 ## Usage
 

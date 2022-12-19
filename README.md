@@ -1,8 +1,17 @@
 # SnFilterable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sn_filterable`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to the Skills Network Filterable gem!
 
-TODO: Delete this and the text above, and describe your gem
+This gem provides a method for developers to quickly implement a live-reloading search and filter foor their data with live-reloading.
+
+Live examples of the gem's use can be viewed at [Skills Network's Author Workbench](https://author.skills.network), primarily under the [organizations tab](https://author.skills.network/organizations)
+
+## Requirements
+
+There are a couple key requirements for your app to be compatible with this gem:
+
+1. You need to have [AlpineJS](https://alpinejs.dev/essentials/installation) loaded into the page you plan to use SnFilterable
+2. Your app needs to be running [TailwindCSS](https://tailwindcss.com/docs/guides/ruby-on-rails)
 
 ## Installation
 
@@ -63,10 +72,6 @@ TODO: Write usage instructions here
 
 ## Testing / Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 This gem using [RSpec](https://rspec.info) for testing. Tests can be running locally by first setting up the dummy database/app as follows:
 
 ```bash
@@ -84,7 +89,7 @@ bundle exec rspec
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sn_filterable.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/ibm-skills-network/sn_filterable).
 
 ## License
 

@@ -1,4 +1,5 @@
-module Filterable
+module SnFilterable
+  require "view_component"
   # Renders the filtering interface
   #
   # ## Filters' info
@@ -12,7 +13,7 @@ module Filterable
   class MainComponent < ViewComponent::Base
     include Turbo::FramesHelper
     include Turbo::StreamsHelper
-    include HeroiconHelper
+    include Heroicon::Engine.helpers
 
     renders_one :search
 
@@ -32,7 +33,7 @@ module Filterable
     end
 
     def search_field
-      Filterable::SearchComponent.new(filtered: @filtered, filter_name: @search_filter_name)
+      SnFilterable::SearchComponent.new(filtered: @filtered, filter_name: @search_filter_name)
     end
   end
 end

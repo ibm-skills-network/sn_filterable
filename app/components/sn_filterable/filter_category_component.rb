@@ -1,7 +1,7 @@
-module Filterable
+module SnFilterable
   # Component for a filter's category for the filters sidebar
   class FilterCategoryComponent < ViewComponent::Base
-    include HeroiconHelper
+    include Heroicon::Engine.helpers
     include FilteredHelper
 
     # @param [Filtered] filtered The filtered instance

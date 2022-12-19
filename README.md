@@ -1,38 +1,148 @@
 # SnFilterable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sn_filterable`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to the Skills Network Filterable gem!
 
-TODO: Delete this and the text above, and describe your gem
+This gem provides a method for developers to quickly implement a customizable search and filter for their data with live-reloading.
+
+Live examples of the gem's use can be viewed at [Skills Network's Author Workbench](https://author.skills.network), primarily under the [organizations tab](https://author.skills.network/organizations)
+
+![](sn_filterable_demo.gif)
+
+## Requirements
+
+There are a couple key requirements for your app to be compatible with this gem:
+
+1. You need to have [AlpineJS](https://alpinejs.dev/essentials/installation) loaded into the page where you plan to use SnFilterable
+2. Your app needs to be running [TailwindCSS](https://tailwindcss.com/docs/guides/ruby-on-rails)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sn_filterable'
+gem "sn_filterable", git: "https://github.com/ibm-skills-network/sn_filterable.git"
 ```
 
 And then execute:
+```bash
+bundle install
+```
 
-    $ bundle install
+##### Make the following adjustments to your codebase
 
-Or install it yourself as:
+1. Add the necessary translations and customize as desired
+```yaml
+# en.yml
+en:
+    # Other translations
+    shared:
+        filterable:
+        view_filter_button: "View filters"
+        results_per_page: "Results per page"
+        clear_all: "Clear all"
+        pagination:
+            previous_page: "Previous"
+            next_page: "Next"
+```
 
-    $ gem install sn_filterable
+2. Require the necessary JavaScript (dependent on AlpineJS being included with your App)
+```javascript
+// application.js converted to application.js.erb
+
+// other imports
+<%= SnFilterable.load_js %>
+```
+
+3. Configure your app's Tailwind to scan the gem
+```javascript
+// tailwind.config.js
+const execSync = require('child_process').execSync;
+const output = execSync('bundle show sn_filterable', { encoding: 'utf-8' });
+
+module.exports = {
+  // other config settings
+  content: [
+    // other content
+    output.trim() + '/app/**/*.{erb,rb}'
+  ]
+  // other config settings
+};
+```
 
 ## Usage
 
-TODO: Write usage instructions here
 
-## Development
+##### The MainComponent: Search Bar and sidebar
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+The MainComponent is what is demo'd in the introduction. It consists of the search bar and a sidebar for filters.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+If you only wish to use the Search bar an optional `show_sidebar: false` parameter can be passed to `SnFilterable::MainComponent` in the view.
+
+There are three components which work to provide the text search functionality:
+
+1. Filters in the given model:
+```ruby
+# model.rb
+class Model < ApplicationRecord
+    include SnFilterable::Filterable
+
+    FILTER_SCOPE_MAPPINGS = {
+        "search_name": :filter_by_name
+        # 'search_name' will be referenced from the view
+    }.freeze
+
+
+    SORT_SCOPE_MAPPINGS = {
+        "sort_name": :sort_by_name
+        # 'sort_name' will be referenced from the controller
+    }.freeze
+
+    scope :filter_by_name, ->(search) { where(SnFilterable::WhereHelper.contains("name", search)) }
+    scope :sort_by_name, -> { order :name }
+    # 'name' is a string column defined on the Model
+
+    # Model code...
+end
+```
+
+2. Setting up the controller
+* While `:default_sort` is an optional parameter it is recommended
+```ruby
+# models_controller.rb
+@search = Model.filter(params:, default_sort: ["sort_name", :asc].freeze)
+@models = @search.items
+```
+
+3. Rendering the ViewComponent
+```html
+<%= render SnFilterable::MainComponent.new(frame_id: "some_unique_id", filtered: @search, filters: [], search_filter_name: "search_name") do %>
+    <% @models.each do |model| %>
+        <%= model.name %>
+    <% end %>
+    <%= filtered_paginate @search %> # Kaminari Gem Pagination
+<% end %>
+```
+
+## Testing / Development
+
+This gem using [RSpec](https://rspec.info) for testing. Tests can be running locally by first setting up the dummy database/app as follows:
+
+```bash
+docker compose up -d
+cd spec/dummy
+rails db:create
+rails db:schema:load
+```
+
+
+Now the test suite can be run from the project root using 
+```bash
+bundle exec rspec
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sn_filterable.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/ibm-skills-network/sn_filterable).
 
 ## License
 

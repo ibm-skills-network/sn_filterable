@@ -1,4 +1,4 @@
-module Filterable
+module SnFilterable
   # Handles rendering of the `View filters` button for mobile layouts
   class FilterButtonComponent < ViewComponent::Base
     # @param [Filtered] filtered The filtered instance

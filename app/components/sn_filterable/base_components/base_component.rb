@@ -2,7 +2,7 @@
 require "view_component"
 require "rails"
 
-class BaseComponent < ViewComponent::Base
+class SnFilterable::BaseComponents::BaseComponent < ViewComponent::Base
   include ClassNameHelper
   include FetchOrFallbackHelper
 

@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Chase McDougall"]
   spec.email = ["chasemcdougall@hotmail.com"]
 
-  spec.summary = "Skills Network - Item filterting component"
+  spec.summary = "Skills Network - Item filtering component"
   spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL data."
   spec.homepage = "https://github.com/ibm-skills-network/sn_filterable"
   spec.license = "MIT"
@@ -22,15 +22,7 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = Dir.chdir(__dir__) do
-    `git ls-files -z`.split("\x0").reject do |f|
-      (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
-    end
-  end
-  # spec.files = [
-  #   "lib/sn_filterable.rb",
-  #   "lib/sn_filterable/filterable.rb"
-  # ]
+  spec.files = Dir["{app,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
@@ -41,6 +33,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "kaminari"
   spec.add_dependency "pg"
   spec.add_dependency "pg_search"
+  spec.add_dependency "tailwindcss-rails"
+  spec.add_dependency "turbo-rails"
   spec.add_dependency "view_component"
 
   spec.add_development_dependency "factory_bot_rails"

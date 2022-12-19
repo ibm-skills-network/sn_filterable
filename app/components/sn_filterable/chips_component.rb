@@ -1,4 +1,4 @@
-module Filterable
+module SnFilterable
   # Handles rendering of the chips for the filters
   class ChipsComponent < ViewComponent::Base
     include FilteredHelper

@@ -9,16 +9,12 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sn_filterable'
+gem "sn_filterable", git: "https://github.com/ibm-skills-network/sn_filterable.git"
 ```
 
 And then execute:
 
     $ bundle install
-
-Or install it yourself as:
-
-    $ gem install sn_filterable
     
 ##### Make the following adjustments to your codebase
 

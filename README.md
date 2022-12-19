@@ -101,7 +101,10 @@ end
 3. Rendering the ViewComponent
 ```html
 <%= render SnFilterable::MainComponent.new(frame_id: "some_unique_id", filtered: @search, filters: [], search_filter_name: "search_name") do %>
-  <%= render "table" %> <!-- Some table that renders @models -->
+    <% @models.each do |model| %>
+        <%= model.name %>
+    <% end %>
+    <%= filtered_paginate @search %> # Kaminari Gem Pagination
 <% end %>
 ```
 

@@ -11,6 +11,10 @@ require "kaminari"
 module SnFilterable
   include SnFilterable::Filterable
 
+  def self.load_js
+    File.read(File.join(Gem.loaded_specs["sn_filterable"].full_gem_path, "app", "assets", "javascripts", "sn_filtering.js"))
+  end
+
   # View helper for [Filtered].
   #
   # Defaults the URL of [Filtered] calls to use `url_for`.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require_relative "base_component"
 
-class ButtonComponent < BaseComponent
+class SnFilterable::BaseComponents::ButtonComponent < SnFilterable::BaseComponents::BaseComponent
   DEFAULT_BUTTON_TYPE = :default
   BUTTON_TYPE_MAPPINGS = {
     DEFAULT_BUTTON_TYPE => "shadow-sm border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-indigo-500",
@@ -66,6 +66,6 @@ class ButtonComponent < BaseComponent
   end
 
   def call
-    render(BaseComponent.new(**@arguments)) { content }
+    render(SnFilterable::BaseComponents::BaseComponent.new(**@arguments)) { content }
   end
 end

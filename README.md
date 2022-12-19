@@ -71,7 +71,39 @@ module.exports = {
 
 ## Usage
 
-TODO: Write usage instructions here
+There are three components which work to provide the text search functionality:
+
+1. Filters in the given model:
+```ruby
+# model.rb
+class Model < ApplicationRecord
+    include SnFilterable::Filterable
+
+    FILTER_SCOPE_MAPPINGS = {
+        "search_name": :filter_by_name
+        # 'search_name' will be referenced from the view
+    }.freeze
+
+    scope :filter_by_name, ->(search) { where(SnFilterable::WhereHelper.contains("name", search)) }
+    # 'name' is a string column defined on the Model
+
+    # Model code...
+end
+```
+
+2. Setting up the controller
+```ruby
+# models_controller.rb
+@search = Model.filter(params:, default_sort: ["name", :asc].freeze)
+@models = @search.items
+```
+
+3. Rendering the ViewComponent
+```html
+<%= render SnFilterable::MainComponent.new(frame_id: "some_unique_id", filtered: @search, filters: [], search_filter_name: "search_name") do %>
+  <%= render "table" %> <!-- Some table that renders @models -->
+<% end %>
+```
 
 ## Testing / Development
 

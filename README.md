@@ -6,6 +6,8 @@ This gem provides a method for developers to quickly implement a live-reloading 
 
 Live examples of the gem's use can be viewed at [Skills Network's Author Workbench](https://author.skills.network), primarily under the [organizations tab](https://author.skills.network/organizations)
 
+![](sn_filterable_demo.gif)
+
 ## Requirements
 
 There are a couple key requirements for your app to be compatible with this gem:

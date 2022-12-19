@@ -84,7 +84,14 @@ class Model < ApplicationRecord
         # 'search_name' will be referenced from the view
     }.freeze
 
+
+    SORT_SCOPE_MAPPINGS = {
+        "name": :sort_by_name
+        # 'name' will be referenced from the controller
+    }.freeze
+
     scope :filter_by_name, ->(search) { where(SnFilterable::WhereHelper.contains("name", search)) }
+    scope :sort_by_name, -> { order :name }
     # 'name' is a string column defined on the Model
 
     # Model code...

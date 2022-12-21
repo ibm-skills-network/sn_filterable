@@ -72,7 +72,7 @@ module.exports = {
 ## Usage
 
 
-##### The MainComponent: Search Bar and sidebar
+#### The MainComponent: Search Bar and sidebar
 
 The MainComponent is what is demo'd in the introduction. It consists of the search bar and a sidebar for filters.
 
@@ -120,6 +120,56 @@ end
         <%= model.name %>
     <% end %>
     <%= filtered_paginate @search %> # Kaminari Gem Pagination
+<% end %>
+```
+
+#### The MainComponent: Adding filters to the sidebar
+
+Adding filters to the sidebar requires changes to two files though we recommend storing the data across three files and will demsontrate as such.
+
+1. Add filters to Model
+```ruby
+# app/models/model.rb
+class Model < ApplicationRecord
+    # inclusion statement from introduction
+
+    FILTER_SCOPE_MAPPINGS = {
+        # other filter scopes...
+        "model_type_filter": :filter_by_type
+    }.freeze
+    # 'model_type_filter' will be referenced in step 2
+
+    ARRAY_FILTER_SCOPES = %i[model_type_filter].freeze
+    # safelist of all filters we will be rendering in our sidebar
+    
+    scope :filter_by_type, ->(model_type_input) { where(model_type: model_type_input) }
+    # where 'model_type' is an attribute defined on Model
+end
+```
+
+2. Create filter options
+```ruby
+# app/models/filter.rb
+# We store in a filter.rb model, but you can store as desired
+class Filter
+  MODEL_FILTERS = [
+    {
+      multi: true,
+      title: "Type",
+      filter_name: "model_type_filter",
+      filters: %w(Special Normal).map { |type| { name: type, value: type } }
+      # Allows us to filter between 'Special' and 'Normal' model types
+      # Note we recommend storing the %w(Special Normal) array at a central location for easier validation and manipulation
+    }
+  ].freeze
+end
+```
+
+3. Render as part of our MainComponent
+```html
+<!-- Notice the addition of a non-empty 'filters' argument which references step 2 -->
+<%= render SnFilterable::MainComponent.new(frame_id: "some_unique_id", filtered: @search, filters: Filter::MODEL_FILTERS, search_filter_name: "search_name") do %>
+    <!-- display code.. -->
 <% end %>
 ```
 

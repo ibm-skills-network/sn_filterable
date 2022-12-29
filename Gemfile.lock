@@ -2,13 +2,13 @@ PATH
   remote: .
   specs:
     sn_filterable (0.1.1)
-      heroicon
-      kaminari
-      pg
-      pg_search
-      tailwindcss-rails
-      turbo-rails
-      view_component
+      heroicon (~> 1)
+      kaminari (~> 1)
+      pg (~> 1)
+      pg_search (~> 2)
+      tailwindcss-rails (~> 2)
+      turbo-rails (~> 1)
+      view_component (~> 2)
 
 GEM
   remote: https://rubygems.org/
@@ -248,16 +248,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  factory_bot_rails
-  faker
-  rake
-  rspec-rails
-  rubocop-github
-  rubocop-performance
-  rubocop-rails
-  rubocop-rspec
+  factory_bot_rails (~> 6)
+  faker (~> 3)
+  rake (~> 13)
+  rspec-rails (~> 6)
+  rubocop-github (~> 0)
+  rubocop-performance (~> 1)
+  rubocop-rails (~> 2)
+  rubocop-rspec (~> 2)
   sn_filterable!
-  with_model
+  with_model (~> 2)
 
 BUNDLED WITH
    2.3.11

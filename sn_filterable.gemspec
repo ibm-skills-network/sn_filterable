@@ -14,8 +14,6 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
-
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/ibm-skills-network/sn_filterable"
   spec.metadata["changelog_uri"] = "https://github.com/ibm-skills-network/sn_filterable/releases"
@@ -29,23 +27,23 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "heroicon" # TODO: Convert to inline SVG to avoid additional gem dependency
-  spec.add_dependency "kaminari"
-  spec.add_dependency "pg"
-  spec.add_dependency "pg_search"
-  spec.add_dependency "tailwindcss-rails"
-  spec.add_dependency "turbo-rails"
-  spec.add_dependency "view_component"
+  spec.add_dependency "heroicon", "~> 1"
+  spec.add_dependency "kaminari", "~> 1"
+  spec.add_dependency "pg", "~> 1"
+  spec.add_dependency "pg_search", "~> 2"
+  spec.add_dependency "tailwindcss-rails", "~> 2"
+  spec.add_dependency "turbo-rails", "~> 1"
+  spec.add_dependency "view_component", "~> 2"
 
-  spec.add_development_dependency "factory_bot_rails"
-  spec.add_development_dependency "faker"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "rubocop-performance"
-  spec.add_development_dependency "rubocop-github"
-  spec.add_development_dependency "rubocop-rails"
-  spec.add_development_dependency "rubocop-rspec"
-  spec.add_development_dependency "with_model"
+  spec.add_development_dependency "factory_bot_rails", "~> 6"
+  spec.add_development_dependency "faker", "~> 3"
+  spec.add_development_dependency "rake", "~> 13"
+  spec.add_development_dependency "rspec-rails", "~> 6"
+  spec.add_development_dependency "rubocop-performance", "~> 1"
+  spec.add_development_dependency "rubocop-github", "~> 0"
+  spec.add_development_dependency "rubocop-rails", "~> 2"
+  spec.add_development_dependency "rubocop-rspec", "~> 2"
+  spec.add_development_dependency "with_model", "~> 2"
   # spec.add_development_dependency "rails"
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

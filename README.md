@@ -20,7 +20,7 @@ There are a couple key requirements for your app to be compatible with this gem:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "sn_filterable", git: "https://github.com/ibm-skills-network/sn_filterable.git"
+gem "sn_filterable"
 ```
 
 And then execute:

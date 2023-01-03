@@ -1,5 +1,4 @@
 require "rails/engine"
-require "view_component/engine"
 
 module SnFilterable
   class Engine < Rails::Engine

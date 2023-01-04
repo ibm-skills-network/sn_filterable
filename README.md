@@ -190,7 +190,28 @@ Now the test suite can be run from the project root using
 bundle exec rspec
 ```
 
+### Using a Development Version
+
+Your changes can be tested manually by making one of the following additions to an App's Gemfile:
+
+For using a local version:
+```ruby
+gem "sn_filterable", path: "path/to/gem/sn_filterable"
+```
+
+For using a GitHub branch:
+```ruby
+gem "sn_filterable", git: "https://github.com/ibm-skills-network/sn_filterable.git", branch: "defaults_to_main"
+```
+
+
 ## Contributing
+
+Once you have made your updates to the codebase do the following to ensure a smooth merge:
+
+1. Update `lib/sn_filterable/version.rb` to follow [Semantic Versioning](https://semver.org)
+
+2. Run `bundle` to update the `Gemfile.lock` with your new version
 
 Bug reports and pull requests are welcome on [GitHub](https://github.com/ibm-skills-network/sn_filterable).
 

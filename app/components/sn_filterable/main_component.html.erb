@@ -70,7 +70,7 @@
     </div>
   <% end %>
 
-  <%= turbo_frame_tag @frame_id, "data-turbo-action": "advance" do %>
+  <%= turbo_frame_tag @frame_id, "data-turbo-action": @update_url_on_submit ? "advance" : nil do %>
     <%= content_tag :input, "", type: "hidden", name: "sort", value: @filtered.queries["sort"] if @filtered.queries["sort"].present? %>
     <%= content_tag :input, "", type: "hidden", name: "order", value: @filtered.queries["order"] if @filtered.queries["order"].present? %>
 

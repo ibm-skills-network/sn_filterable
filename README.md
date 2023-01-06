@@ -53,6 +53,13 @@ en:
 <%= SnFilterable.load_js %>
 ```
 
+If your application does not allow for use of `.js.erb` files the JavaScript can be loaded by adding the following to your layout:
+```javascript
+<%= javascript_tag nonce: true do %>
+  <%= SnFilterable.load_js.html_safe %>
+<% end %>
+```
+
 3. Configure your app's Tailwind to scan the gem
 ```javascript
 // tailwind.config.js

@@ -33,9 +33,8 @@ module SnFilterable
         filter_params = filter_params(params)
         sort_params = sort_params(params)
         other_params = other_params(params, items)
-
-        items = perform_filter(items, filter_params)
         items, sort_name, reverse_order = perform_sort(items, sort_params, default_sort)
+        items = perform_filter(items, filter_params)
         items = items.page(other_params[:page]).per(other_params[:per]) if pagination_enabled
 
         Filtered.new(self, items, generate_url_queries(filter_params, sort_params, other_params), sort_name, reverse_order)

@@ -300,7 +300,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
   end
 
   context "with an explicitly declared reversed sort" do
-    with_model :SortWithExplicitReversedFilterableTestModel, scope: :all do
+    with_model :SortReversedFilterableTest, scope: :all do
       table do |t|
         t.string :name
         t.integer :favorite_number
@@ -309,7 +309,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
       model do
         include SnFilterable::Filterable
 
-        SortWithExplicitReversedFilterableTestModel::SORT_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
+        SortReversedFilterableTest::SORT_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
           "name": :sort_by_name
         }.freeze
 
@@ -319,21 +319,21 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
     end
 
     before do
-      create_list(:sort_with_explicit_reversed_filterable_test_model, 10)
+      create_list(:sort_reversed_filterable_test, 10)
     end
 
     it "can sort" do
-      expected_items = SortWithExplicitReversedFilterableTestModel.order("name ASC").map(&:name)
+      expected_items = SortReversedFilterableTest.order("name ASC").map(&:name)
 
-      filtered = SortWithExplicitReversedFilterableTestModel.filter(params: ActionController::Parameters.new({ sort: "name", order: "asc" }))
+      filtered = SortReversedFilterableTest.filter(params: ActionController::Parameters.new({ sort: "name", order: "asc" }))
 
       expect(filtered.items.map(&:name)).to eq(expected_items)
     end
 
     it "can reverse sort" do
-      expected_items = SortWithExplicitReversedFilterableTestModel.order("favorite_number ASC").map(&:favorite_number)
+      expected_items = SortReversedFilterableTest.order("favorite_number ASC").map(&:favorite_number)
 
-      filtered = SortWithExplicitReversedFilterableTestModel.filter(params: ActionController::Parameters.new({ sort: "name", order: "desc" }))
+      filtered = SortReversedFilterableTest.filter(params: ActionController::Parameters.new({ sort: "name", order: "desc" }))
 
       expect(filtered.items.map(&:favorite_number)).to eq(expected_items)
     end

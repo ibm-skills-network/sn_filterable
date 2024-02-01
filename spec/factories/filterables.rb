@@ -21,7 +21,7 @@ FactoryBot.define do
     favorite_number { Faker::Number.unique.between(from: 0, to: 100_000) }
   end
 
-  factory :sort_with_explicit_reversed_filterable_test_model do
+  factory :sort_reversed_filterable_test do
     name { Faker::Name.unique.name }
     favorite_number { Faker::Number.unique.between(from: 0, to: 100_000) }
   end

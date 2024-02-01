@@ -24,7 +24,8 @@ module SnFilterable
     # @param [String, nil] search_filter_name Optional, enable's and set's the search filter, specified by the filter's parameter name
     # @param [Boolean] show_sidebar If true, will show the sidebar with the filters.
     # @param [Boolean] update_url_on_submit If true, will update the URL in the user's browser on form submission.
-    def initialize(frame_id:, filtered:, filters:, url: nil, search_filter_name: nil, show_sidebar: true, update_url_on_submit: true)
+    # @param [Hash] extra_params Optional, allows for custom form values to be supplied. Useful if you need to retain non-filterable query params
+    def initialize(frame_id:, filtered:, filters:, url: nil, search_filter_name: nil, show_sidebar: true, update_url_on_submit: true, extra_params: {})
       @frame_id = frame_id
       @filtered = filtered
       @filters = filters
@@ -32,6 +33,7 @@ module SnFilterable
       @search_filter_name = search_filter_name
       @show_sidebar = show_sidebar
       @update_url_on_submit = update_url_on_submit
+      @extra_params = extra_params
     end
 
     def search_field

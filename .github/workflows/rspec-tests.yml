@@ -18,11 +18,12 @@ jobs:
           POSTGRES_DB: sn_filterable_test
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.2
+        bundler-cache: true
     - name: Setup Database
       env:
         RAILS_ENV: test

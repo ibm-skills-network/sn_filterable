@@ -5,14 +5,14 @@ require_relative "lib/sn_filterable/version"
 Gem::Specification.new do |spec|
   spec.name = "sn_filterable"
   spec.version = SnFilterable::VERSION
-  spec.authors = ["Chase McDougall"]
-  spec.email = ["chasemcdougall@hotmail.com"]
+  spec.authors = ["IBM Skills Network"]
+  spec.email = ["Skills.Network@ibm.com"]
 
   spec.summary = "Skills Network - Item filtering component"
   spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL data."
   spec.homepage = "https://github.com/ibm-skills-network/sn_filterable"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 3.2.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/ibm-skills-network/sn_filterable"

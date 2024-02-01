@@ -7,6 +7,9 @@
                   "data-turbo-frame": @frame_id,
                   "class": "relative",
                   "@submit": "filtersLoading = true" do %>
+    <% @extra_params.each do |k, v| %>
+      <%= content_tag :input, "", class: "hidden", type: "hidden", value: v, name: k %>
+    <% end %>
     <div class="absolute w-full h-full pointer-events-none">
       <div class="absolute flex flex-col sm:grid sm:grid-cols-3 gap-4 w-full pointer-events-none">
         <div class="sm:hidden h-14"></div>

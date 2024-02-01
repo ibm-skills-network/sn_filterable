@@ -46,29 +46,29 @@ RSpec.describe Filtered, type: :model do
 
   describe "#set_filter_url" do
     it "creates a valid url when it has no parameters" do
-      expected_url = "/?filter[name]=test"
+      expected_url = "/?filter%5Bname%5D=test"
       actual_url = filtered.set_filter_url("/", "name", "test")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there is a conflicting filter" do
-      expected_url = "/?filter[name]=test"
-      actual_url = filtered.set_filter_url("/?filter[name]=123", "name", "test")
+      expected_url = "/?filter%5Bname%5D=test"
+      actual_url = filtered.set_filter_url("/?filter%5Bname%5D=123", "name", "test")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there is one filter" do
-      expected_url = "/?filter[name]=test"
-      actual_url = filtered.set_filter_url("/?filter[favorite_number]=123", "name", "test")
+      expected_url = "/?filter%5Bname%5D=test"
+      actual_url = filtered.set_filter_url("/?filter%5Bfavorite_number%5D=123", "name", "test")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there are multiple filters" do
-      expected_url = "/?filter[name]=test"
-      actual_url = filtered.set_filter_url("/?filter[favorite_number]=123&filter[created_at]=897", "name", "test")
+      expected_url = "/?filter%5Bname%5D=test"
+      actual_url = filtered.set_filter_url("/?filter%5Bfavorite_number%5D=123&filter%5Bcreated_at%5D=897", "name", "test")
 
       expect(actual_url).to eq(expected_url)
     end
@@ -76,31 +76,31 @@ RSpec.describe Filtered, type: :model do
 
   describe "#add_filter_url" do
     it "creates a valid url when there are no filters" do
-      expected_url = "/?filter[name]=test"
+      expected_url = "/?filter%5Bname%5D=test"
       actual_url = filtered.add_filter_url("/", "name", "test")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there is a conflicting filter" do
-      actual_url = filtered.add_filter_url("/?filter[name]=123", "name", "test")
+      actual_url = filtered.add_filter_url("/?filter%5Bname%5D=123", "name", "test")
 
-      expect(actual_url).to include("filter[name]=test")
+      expect(actual_url).to include("filter%5Bname%5D=test")
     end
 
     it "creates a valid url when there is one filter" do # rubocop:disable RSpec/MultipleExpectations
-      actual_url = filtered.add_filter_url("/?filter[favorite_number]=123", "name", "test")
+      actual_url = filtered.add_filter_url("/?filter%5Bfavorite_number%5D=123", "name", "test")
 
-      expect(actual_url).to include("filter[favorite_number]=123")
-      expect(actual_url).to include("filter[name]=test")
+      expect(actual_url).to include("filter%5Bfavorite_number%5D=123")
+      expect(actual_url).to include("filter%5Bname%5D=test")
     end
 
     it "creates a valid url when there are multiple filters" do # rubocop:disable RSpec/MultipleExpectations
-      actual_url = filtered.add_filter_url("/?filter[favorite_number]=123&filter[created_at]=897", "name", "test")
+      actual_url = filtered.add_filter_url("/?filter%5Bfavorite_number%5D=123&filter%5Bcreated_at%5D=897", "name", "test")
 
-      expect(actual_url).to include("filter[favorite_number]=123")
-      expect(actual_url).to include("filter[created_at]=897")
-      expect(actual_url).to include("filter[name]=test")
+      expect(actual_url).to include("filter%5Bfavorite_number%5D=123")
+      expect(actual_url).to include("filter%5Bcreated_at%5D=897")
+      expect(actual_url).to include("filter%5Bname%5D=test")
     end
   end
 
@@ -114,24 +114,24 @@ RSpec.describe Filtered, type: :model do
 
     it "creates a valid url when there is a matching filter" do
       expected_url = "/"
-      actual_url = filtered.remove_filter_url("/?filter[name]=123", "name")
+      actual_url = filtered.remove_filter_url("/?filter%5Bname%5D=123", "name")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there are no matching filters" do
-      expected_url = "/?filter[favorite_number]=123"
-      actual_url = filtered.remove_filter_url("/?filter[favorite_number]=123", "name")
+      expected_url = "/?filter%5Bfavorite_number%5D=123"
+      actual_url = filtered.remove_filter_url("/?filter%5Bfavorite_number%5D=123", "name")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there is a matching and multiple filters" do # rubocop:disable RSpec/MultipleExpectations
-      actual_url = filtered.remove_filter_url("/?filter[name]=123&filter[favorite_number]=123&filter[created_at]=897", "name")
+      actual_url = filtered.remove_filter_url("/?filter%5Bname%5D=123&filter%5Bfavorite_number%5D=123&filter%5Bcreated_at%5D=897", "name")
 
-      expect(actual_url).to include("filter[favorite_number]=123")
-      expect(actual_url).to include("filter[created_at]=897")
-      expect(actual_url).not_to include("filter[name]=test")
+      expect(actual_url).to include("filter%5Bfavorite_number%5D=123")
+      expect(actual_url).to include("filter%5Bcreated_at%5D=897")
+      expect(actual_url).not_to include("filter%5Bname%5D=test")
     end
   end
 
@@ -145,24 +145,24 @@ RSpec.describe Filtered, type: :model do
 
     it "creates a valid url when there is a matching filter" do
       expected_url = "/"
-      actual_url = filtered.remove_sub_filter_url("/?filter[name][]=123", "name", "123")
+      actual_url = filtered.remove_sub_filter_url("/?filter%5Bname%5D%5B%5D=123", "name", "123")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there are no matching filters" do
-      expected_url = "/?filter[favorite_number][]=123"
-      actual_url = filtered.remove_sub_filter_url("/?filter[favorite_number][]=123", "favorite_number", "456")
+      expected_url = "/?filter%5Bfavorite_number%5D%5B%5D=123"
+      actual_url = filtered.remove_sub_filter_url("/?filter%5Bfavorite_number%5D%5B%5D=123", "favorite_number", "456")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there is a matching and multiple filters" do # rubocop:disable RSpec/MultipleExpectations
-      actual_url = filtered.remove_sub_filter_url("/?filter[name][]=abc&filter[name][]=def&filter[name][]=ghi", "name", "abc")
+      actual_url = filtered.remove_sub_filter_url("/?filter%5Bname%5D%5B%5D=abc&filter%5Bname%5D%5B%5D=def&filter%5Bname%5D%5B%5D=ghi", "name", "abc")
 
-      expect(actual_url).not_to include("filter[name][]=abc")
-      expect(actual_url).to include("filter[name][]=def")
-      expect(actual_url).to include("filter[name][]=ghi")
+      expect(actual_url).not_to include("filter%5Bname%5D%5B%5D=abc")
+      expect(actual_url).to include("filter%5Bname%5D%5B%5D=def")
+      expect(actual_url).to include("filter%5Bname%5D%5B%5D=ghi")
     end
   end
 
@@ -176,7 +176,7 @@ RSpec.describe Filtered, type: :model do
 
     it "creates a valid url when there are filters" do
       expected_url = "/"
-      actual_url = filtered.clear_filter_url("/?filter[name]=test&filter[abc]=123")
+      actual_url = filtered.clear_filter_url("/?filter%5Bname%5D=test&filter%5Babc%5D=123")
 
       expect(actual_url).to eq(expected_url)
     end
@@ -190,7 +190,7 @@ RSpec.describe Filtered, type: :model do
 
     it "creates a valid url when there is sorting and filters" do
       expected_url = "/?sort=name&order=desc"
-      actual_url = filtered.clear_filter_url("/?filter[name]=test&filter[abc]=123&sort=name&order=desc")
+      actual_url = filtered.clear_filter_url("/?filter%5Bname%5D=test&filter%5Babc%5D=123&sort=name&order=desc")
 
       expect(actual_url).to eq(expected_url)
     end
@@ -212,15 +212,15 @@ RSpec.describe Filtered, type: :model do
     end
 
     it "creates a valid url when there are filters" do
-      expected_url = "/?filter[name]=test&filter[abc]=123"
-      actual_url = filtered.clear_sort_url("/?filter[name]=test&filter[abc]=123")
+      expected_url = "/?filter%5Bname%5D=test&filter%5Babc%5D=123"
+      actual_url = filtered.clear_sort_url("/?filter%5Bname%5D=test&filter%5Babc%5D=123")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates a valid url when there is sorting and filters" do
-      expected_url = "/?filter[name]=test&filter[abc]=123"
-      actual_url = filtered.clear_sort_url("/?filter[name]=test&filter[abc]=123&sort=name&order=desc")
+      expected_url = "/?filter%5Bname%5D=test&filter%5Babc%5D=123"
+      actual_url = filtered.clear_sort_url("/?filter%5Bname%5D=test&filter%5Babc%5D=123&sort=name&order=desc")
 
       expect(actual_url).to eq(expected_url)
     end
@@ -243,14 +243,14 @@ RSpec.describe Filtered, type: :model do
 
     it "creates an empty url when there are filters" do
       expected_url = "/"
-      actual_url = filtered.clear_all_url("/?filter[name]=test&filter[abc]=123")
+      actual_url = filtered.clear_all_url("/?filter%5Bname%5D=test&filter%5Babc%5D=123")
 
       expect(actual_url).to eq(expected_url)
     end
 
     it "creates an empty url when there is sorting and filters" do
       expected_url = "/"
-      actual_url = filtered.clear_all_url("/?filter[name]=test&filter[abc]=123&sort=name&order=desc")
+      actual_url = filtered.clear_all_url("/?filter%5Bname%5D=test&filter%5Babc%5D=123&sort=name&order=desc")
 
       expect(actual_url).to eq(expected_url)
     end

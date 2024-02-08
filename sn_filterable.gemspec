@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pg", "~> 1"
   spec.add_dependency "pg_search", "~> 2"
   spec.add_dependency "tailwindcss-rails", "~> 2"
-  spec.add_dependency "turbo-rails", "~> 1"
+  spec.add_dependency "turbo-rails", "~> 2"
   spec.add_dependency "view_component", "~> 2"
 
   spec.add_development_dependency "factory_bot_rails", "~> 6"

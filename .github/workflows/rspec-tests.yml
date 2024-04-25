@@ -61,11 +61,13 @@ jobs:
       env:
         RAILS_ENV: test
         DATABASE_URL: mysql2://root:password@127.0.0.1:3306/sn_filterable_test
+        DATABASE_ENCODING: utf8mb4
       run: cd spec/dummy && bin/rails db:create db:schema:load
     - name: Test with rspec
       env:
         RAILS_ENV: test
         DATABASE_URL: mysql2://root:password@127.0.0.1:3306/sn_filterable_test
+        DATABASE_ENCODING: utf8mb4
       run: bundle exec rspec
     - name: Archive RSpec screenshots
       if: always()

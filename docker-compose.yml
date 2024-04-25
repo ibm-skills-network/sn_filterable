@@ -1,5 +1,13 @@
 version: "3"
 services:
+  mysql:
+    image: mysql:8.2
+    environment:
+      - "MYSQL_ROOT_PASSWORD=password"
+      - "MYSQL_DATABASE=sn_filterable_test"
+    ports:
+      - 3306:3306
+
   postgres:
     image: postgres:14-alpine
     ports:

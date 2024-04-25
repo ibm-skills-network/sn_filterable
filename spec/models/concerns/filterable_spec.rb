@@ -13,7 +13,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
       BasicFilterableTestModel::FILTER_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
         "name": :filter_by_name,
         "favorite_number": :filter_by_favorite_number,
-        "search": :search_by_name_favorite_number
+        "search": :search_by_name
       }.freeze
 
       BasicFilterableTestModel::SORT_SCOPE_MAPPINGS = { # rubocop:disable RSpec/LeakyConstantDeclaration
@@ -26,13 +26,7 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
 
       scope :sort_by_name, -> { order :name }
       scope :sort_by_favorite_number, -> { order :favorite_number }
-
-      pg_search_scope :search_by_name_favorite_number,
-                      against: { name: "A", favorite_number: "B" },
-                      using: {
-                        tsearch: { prefix: true, dictionary: "english" }
-                      },
-                      ignoring: :accents
+      scope :search_by_name, ->(search) { where("name like ?", "%#{search}%")}
     end
   end
 
@@ -189,15 +183,6 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
       expected_items = [all_items.first.name]
 
       filtered = BasicFilterableTestModel.filter(params: ActionController::Parameters.new({ filter: { search: target_user.name } }))
-
-      expect(filtered.items.map(&:name)).to eq(expected_items)
-    end
-
-    it "can search ignoring diacritics" do
-      all_items = BasicFilterableTestModel.where(nil)
-      expected_items = [all_items.first.name]
-
-      filtered = BasicFilterableTestModel.filter(params: ActionController::Parameters.new({ filter: { search: target_user.name.split(//).join("").tr("aeiouylszcn", "àèîôûÿłšżçñ") } }))
 
       expect(filtered.items.map(&:name)).to eq(expected_items)
     end
@@ -532,7 +517,11 @@ RSpec.describe SnFilterable::PolymorphicHelper, type: :model do
       polymorphic_association_id = "#{polymorphic_association}_id"
       polymorphic_association_type = "#{polymorphic_association}_type"
 
-      "LEFT OUTER JOIN \"#{first_model_table}\" ON \"#{first_model_table}\".id = \"#{base_model_table}\".\"#{polymorphic_association_id}\" AND \"#{base_model_table}\".\"#{polymorphic_association_type}\" = '#{first_model_name}'"
+      if ActiveRecord::Base.connection_db_config.adapter == "mysql2"
+        "LEFT OUTER JOIN `#{first_model_table}` ON `#{first_model_table}`.id = `#{base_model_table}`.`#{polymorphic_association_id}` AND `#{base_model_table}`.`#{polymorphic_association_type}` = '#{first_model_name}'"
+      else
+        "LEFT OUTER JOIN \"#{first_model_table}\" ON \"#{first_model_table}\".id = \"#{base_model_table}\".\"#{polymorphic_association_id}\" AND \"#{base_model_table}\".\"#{polymorphic_association_type}\" = '#{first_model_name}'"
+      end
     end
   end
 
@@ -540,7 +529,11 @@ RSpec.describe SnFilterable::PolymorphicHelper, type: :model do
     it "creates a valid function" do
       actual_output = described_class.coalesce([DummyModel], "some_column")
 
-      expect(actual_output).to eq("coalesce(\"dummy_models\".\"some_column\")")
+      if ActiveRecord::Base.connection_db_config.adapter == "mysql2"
+        expect(actual_output).to eq("coalesce(`dummy_models`.`some_column`)")
+      else
+        expect(actual_output).to eq("coalesce(\"dummy_models\".\"some_column\")")
+      end
     end
   end
 end

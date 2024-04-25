@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
+      mysql:
         image: mysql:8.2
         ports: ["3306:3306"]
         env:
@@ -62,7 +62,7 @@ jobs:
         RAILS_ENV: test
         DATABASE_URL: mysql2://root:password@127.0.0.1:3306/sn_filterable_test
         DATABASE_ENCODING: utf8mb4
-      run: cd spec/dummy && bin/rails db:create db:schema:load
+      run: cd spec/dummy && bin/rails db:schema:load
     - name: Test with rspec
       env:
         RAILS_ENV: test

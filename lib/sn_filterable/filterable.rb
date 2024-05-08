@@ -14,12 +14,10 @@
 # `DEFAULT_SORT`: Optional, sets the default sort of the items when no sorting parameter is set. Can be either a [String], which returns the sorting name or an [Array], where the first item is the sorting name and the second item is the sort direction (either `:asc` or `:desc`).
 #
 # @see Filtered
-require "pg_search"
 
 module SnFilterable
   module Filterable
     extend ActiveSupport::Concern
-    include PgSearch::Model
 
     class_methods do
       # Filters and sorts the model's items.

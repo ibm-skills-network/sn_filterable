@@ -29,12 +29,12 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "heroicon", "~> 1"
   spec.add_dependency "kaminari", "~> 1"
-  spec.add_dependency "pg", "~> 1"
-  spec.add_dependency "pg_search", "~> 2"
   spec.add_dependency "tailwindcss-rails", "~> 2"
   spec.add_dependency "turbo-rails", "~> 2"
   spec.add_dependency "view_component", "~> 2"
 
+  spec.add_development_dependency "pg", "~> 1"
+  spec.add_development_dependency "mysql2", "~> 0.5"
   spec.add_development_dependency "factory_bot_rails", "~> 6"
   spec.add_development_dependency "faker", "~> 3"
   spec.add_development_dependency "rake", "~> 13"

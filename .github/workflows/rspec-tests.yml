@@ -3,8 +3,8 @@ name: Tests
 on: [push]
 
 jobs:
-  build:
-    name: RSpec
+  rspec_postgres:
+    name: RSpec (Postgres)
     runs-on: ubuntu-latest
 
     services:
@@ -31,6 +31,43 @@ jobs:
     - name: Test with rspec
       env:
         RAILS_ENV: test
+      run: bundle exec rspec
+    - name: Archive RSpec screenshots
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: rspec-screenshots
+        path: tmp/screenshots
+  rspec_mysql:
+    name: RSpec (MySQL)
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.2
+        ports: ["3306:3306"]
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: sn_filterable_test
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2
+        bundler-cache: true
+    - name: Setup Database
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: mysql2://root:password@127.0.0.1:3306/sn_filterable_test
+        DATABASE_ENCODING: utf8mb4
+      run: cd spec/dummy && bin/rails db:schema:load
+    - name: Test with rspec
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: mysql2://root:password@127.0.0.1:3306/sn_filterable_test
+        DATABASE_ENCODING: utf8mb4
       run: bundle exec rspec
     - name: Archive RSpec screenshots
       if: always()

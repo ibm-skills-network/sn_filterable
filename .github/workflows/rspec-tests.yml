@@ -34,7 +34,7 @@ jobs:
       run: bundle exec rspec
     - name: Archive RSpec screenshots
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: rspec-screenshots
         path: tmp/screenshots
@@ -71,7 +71,7 @@ jobs:
       run: bundle exec rspec
     - name: Archive RSpec screenshots
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: rspec-screenshots
         path: tmp/screenshots

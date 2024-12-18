@@ -51,7 +51,7 @@
                         <% selected_explcitly = value == @filtered.queries["per"].to_i %>
                         <% selected_by_default = @filtered.queries["per"].blank? && value == @filtered.items.default_per_page %>
                         <%= content_tag :input, "",
-                                        class: "focus:ring-purple-400 cursor-pointer h-5 w-5 text-purple-500 bg-purple-100 border-0",
+                                        class: "focus:ring-violet-400 cursor-pointer h-5 w-5 text-violet-500 bg-violet-100 border-0",
                                         type: "radio",
                                         id: "per-#{value}",
                                         "x-data": { iteracted: selected_explcitly }.to_json,

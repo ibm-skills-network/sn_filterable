@@ -1,21 +1,21 @@
 <% unless @known_filters.empty? %>
-  <div class="relative app-filter-chips-content bg-gray-50 -mx-8 mt-4" x-data="filteringChipContainer" x-init="updateSidebarGap()">
+  <div class="relative app-filter-chips-content bg-gray-50 dark:bg-gray-700 -mx-8 mt-4" x-data="filteringChipContainer" x-init="updateSidebarGap()">
     <div class="mx-auto py-3 px-4 flex items-center px-4 sm:px-6 lg:px-8">
-      <h3 class="sm:pr-0 text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <h3 class="sm:pr-0 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-300">
         <span>Filters</span>
         <span class="sr-only">, active</span>
       </h3>
 
-      <div aria-hidden="true" class="w-px h-5 bg-gray-300 block ml-2 sm:ml-4"></div>
+      <div aria-hidden="true" class="w-px h-5 bg-gray-300 dark:bg-gray-500 block ml-2 sm:ml-4"></div>
 
       <div class="ml-2 sm:ml-4 flex-1">
         <div class="app-filter-chips-container -m-1 flex flex-wrap items-center">
           <% @known_filters.each do |filter| %>
-            <span class="app-filter-chip m-1 inline-flex rounded-full border border-gray-200 items-center py-1.5 pl-3 pr-2 text-xs sm:text-sm font-medium bg-white text-gray-900" x-data>
+            <span class="app-filter-chip m-1 inline-flex rounded-full border border-gray-200 dark:border-gray-600 items-center py-1.5 pl-3 pr-2 text-xs sm:text-sm font-medium bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-300" x-data>
               <span><%= filter[:name] %></span>
               <%= content_tag :a,
                               href: filter[:multi] ? remove_sub_filter_url(@filtered, filter[:parent], filter[:value], url: @url) : remove_filter_url(@filtered, filter[:parent], url: @url),
-                              class: "flex-shrink-0 ml-1 h-4 w-4 p-1 rounded-full inline-flex text-gray-400 hover:bg-gray-200 hover:text-gray-500",
+                              class: "flex-shrink-0 ml-1 h-4 w-4 p-1 rounded-full inline-flex text-gray-400 hover:bg-gray-200 hover:text-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-300",
                               "x-data": "filteringChip(#{filter.to_json})",
                               "@click": "$event.preventDefault(); onClick()" do %>
                 <span class="sr-only">Remove filter for Objects</span>
@@ -28,7 +28,11 @@
         </div>
       </div>
       <div class="pl-2 sm:pl-6">
-        <%= link_to t("shared.filterable.clear_all"), clear_filter_url(@filtered, url: @url), class: "text-sm text-gray-500", "x-data": "filteringClear", "@click": "$event.preventDefault(); onClick()" %>
+        <%= link_to t("shared.filterable.clear_all"),
+                    clear_filter_url(@filtered, url: @url),
+                    class: "text-sm text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100",
+                    "x-data": "filteringClear",
+                    "@click": "$event.preventDefault(); onClick()" %>
       </div>
     </div>
   </div>

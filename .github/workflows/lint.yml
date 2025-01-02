@@ -32,7 +32,7 @@ jobs:
           bundle exec rubocop --version
           echo "--------------------"
           echo "RuboCop config:"
-          bundle exec rubocop --show-config
+          bundle exec rubocop --show-cops
           echo "--------------------"
           echo "Searching for rubocop-discourse in all files:"
           grep -R "rubocop-discourse" . || echo "No occurrences found"

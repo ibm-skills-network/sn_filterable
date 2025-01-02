@@ -14,28 +14,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Debug Dependencies
-        run: |
-          echo "Gemfile content:"
-          cat Gemfile
-          echo "--------------------"
-          echo "Gemfile.lock content:"
-          cat Gemfile.lock || echo "Gemfile.lock not found"
-          echo "--------------------"
-          echo "All gem dependencies:"
-          bundle list
-          echo "--------------------"
-          echo "Dependency tree:"
-          bundle exec ruby -e "require 'bundler'; puts Bundler.load.dependencies.map(&:to_s)"
-          echo "--------------------"
-          echo "RuboCop version:"
-          bundle exec rubocop --version
-          echo "--------------------"
-          echo "RuboCop config:"
-          bundle exec rubocop --show-cops
-          echo "--------------------"
-          echo "Searching for rubocop-discourse in all files:"
-          grep -R "rubocop-discourse" . || echo "No occurrences found"
       - name: rubocop
         uses: reviewdog/action-rubocop@v2
         with:

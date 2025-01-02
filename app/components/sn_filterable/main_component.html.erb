@@ -37,7 +37,7 @@
             <div name="Filter Options" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" class="overflow-y-auto max-h-full">
               <% @filters.each do |filter| %>
                 <%= render SnFilterable::CategoryComponent.new(title: filter[:title], open: @filtered.queries.dig("filter", filter.try(:[], :filter_name)).present?) do |c| %>
-                  <% c.filter(filtered: @filtered, filter: filter) %>
+                  <% c.with_filter(filtered: @filtered, filter: filter) %>
                 <% end %>
               <% end %>
               <%= render SnFilterable::CategoryComponent.new(title: t("shared.filterable.results_per_page"), open: @filtered.queries.dig("per").present?) do %>

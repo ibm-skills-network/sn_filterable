@@ -8,8 +8,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - name: rubocop
         uses: reviewdog/action-rubocop@v2
         with:

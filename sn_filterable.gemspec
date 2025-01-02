@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["Skills.Network@ibm.com"]
 
   spec.summary = "Skills Network - Item filtering component"
-  spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL data."
+  spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL or MySQL data."
   spec.homepage = "https://github.com/ibm-skills-network/sn_filterable"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
@@ -29,9 +29,9 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "heroicon", "~> 1"
   spec.add_dependency "kaminari", "~> 1"
-  spec.add_dependency "tailwindcss-rails", "~> 2"
+  spec.add_dependency "tailwindcss-rails", "~> 3"
   spec.add_dependency "turbo-rails", "~> 2"
-  spec.add_dependency "view_component", "~> 2"
+  spec.add_dependency "view_component", "~> 3"
 
   spec.add_development_dependency "pg", "~> 1"
   spec.add_development_dependency "mysql2", "~> 0.5"

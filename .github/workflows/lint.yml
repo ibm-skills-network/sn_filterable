@@ -1,24 +1,21 @@
 name: Lint
-on: [pull_request]
+on:
+  pull_request:
+permissions:
+  contents: read
+  pull-requests: write
 jobs:
   lint:
-    name: Rubocop
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2
+          bundler-cache: true
       - name: rubocop
         uses: reviewdog/action-rubocop@v2
         with:
-          rubocop_version: gemfile
-          rubocop_extensions: rubocop-performance:gemfile rubocop-rails:gemfile rubocop-github:gemfile rubocop-rspec:gemfile
-# erb-lint has issues with Alpine (of which is used extensively throughout our products), follow the following issues before re-enabling:
-# https://github.com/Shopify/erb-lint/issues/221
-# https://github.com/Shopify/better-html/issues/69
-#      - name: erb-lint
-#        uses: ./.github/actions/erblint
-#        with:
-#          rubocop_extensions: rubocop-performance:gemfile rubocop-rails:gemfile rubocop-github:gemfile
+          skip_install: true
+          use_bundler: true

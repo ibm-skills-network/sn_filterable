@@ -12,6 +12,7 @@ AllCops:
   SuggestExtensions: false
   Exclude:
     - 'spec/**/*'
+    - 'vendor/**/*'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -35,3 +36,4 @@ Lint/MissingSuper:
   Exclude:
     - 'app/components/**/*'
     - 'app/services/**/*'
+

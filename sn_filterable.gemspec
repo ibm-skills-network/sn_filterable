@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["Skills.Network@ibm.com"]
 
   spec.summary = "Skills Network - Item filtering component"
-  spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL data."
+  spec.description = "This gem adds a ViewComponent powered filtering component for searching and filtering your PostgreSQL or MySQL data."
   spec.homepage = "https://github.com/ibm-skills-network/sn_filterable"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"

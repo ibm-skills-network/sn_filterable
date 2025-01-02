@@ -4,8 +4,8 @@ require_relative "base_component"
 class SnFilterable::BaseComponents::ButtonComponent < SnFilterable::BaseComponents::BaseComponent
   DEFAULT_BUTTON_TYPE = :default
   BUTTON_TYPE_MAPPINGS = {
-    DEFAULT_BUTTON_TYPE => "shadow-sm border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-indigo-500",
-    :primary => "shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500",
+    DEFAULT_BUTTON_TYPE => "shadow-sm border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-violet-500",
+    :primary => "shadow-sm text-white bg-violet-600 hover:bg-violet-700 focus:ring-violet-500",
     :danger => "border-transparent text-red-700 bg-red-100 hover:bg-red-200 focus:ring-red-500",
     :disabled => "shadow-sm border-gray-300 text-gray-700 bg-gray-200 cursor-default"
   }.freeze

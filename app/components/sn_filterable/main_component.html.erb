@@ -1,5 +1,5 @@
 <% url = @url || url_for %>
-<div x-data="{ filteringForm: $refs.filtering_form, entireComponenet: $el, filtersLoading: false, filtersPopupOpen: false, sidebarGapTarget: null }">
+<div x-data="{ filteringForm: $refs.filtering_form, entireComponenet: $el, filtersLoading: false, filtersPopupOpen: false, sidebarGapTarget: null }" class="dark:bg-gray-800 dark:text-white">
   <%= content_tag :form,
                   "x-ref": "filtering_form",
                   "action": url,
@@ -26,12 +26,12 @@
       <% if @show_sidebar %>
         <div class="mt-16 h-full pointer-events-auto">
           <div class="h-full" x-init="sidebarGapTarget = $el">
-            <div x-show="filtersPopupOpen" class="fixed top-0 left-0 right-0 bottom-0 z-10 sm:z-0 bg-gray-600 bg-opacity-75 sm:hidden" @click="filtersPopupOpen = false" x-cloak></div>
-            <div x-show="filtersPopupOpen" class="fixed bottom-0 h-2/3 z-10 sm:z-0 left-0 w-full bg-white pt-4 sm:sticky sm:!block row-span-2 shrink-0 mr-4 self-start sm:top-16 lg:w-64 sm:w-52 sm:pt-2 sm:pb-6 sm:overflow-y-auto sm:h-[70vh] sm:max-h-[calc(100vh_-_5rem)]" x-cloak>
+            <div x-show="filtersPopupOpen" class="fixed top-0 left-0 right-0 bottom-0 z-10 sm:z-0 bg-gray-600 bg-opacity-75 dark:bg-gray-900 dark:bg-opacity-75 sm:hidden" @click="filtersPopupOpen = false" x-cloak></div>
+            <div x-show="filtersPopupOpen" class="fixed bottom-0 h-2/3 z-10 sm:z-0 left-0 w-full bg-white dark:bg-gray-800 pt-4 sm:sticky sm:!block row-span-2 shrink-0 mr-4 self-start sm:top-16 lg:w-64 sm:w-52 sm:pt-2 sm:pb-6 sm:overflow-y-auto sm:h-[70vh] sm:max-h-[calc(100vh_-_5rem)]" x-cloak>
             <div class="absolute top-0 right-0 -mt-12 mb-2 mr-2" x-show="filtersPopupOpen">
-              <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" @click="filtersPopupOpen = false">
+              <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white dark:focus:ring-gray-600" @click="filtersPopupOpen = false">
                 <span class="sr-only">Close filters</span>
-                <%= heroicon "x-mark", variant: :outline, options: { class: "h-6 w-6 text-grey-500" } %>
+                <%= heroicon "x-mark", variant: :outline, options: { class: "h-6 w-6 text-grey-500 dark:text-gray-400" } %>
               </button>
             </div>
             <div name="Filter Options" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" class="overflow-y-auto max-h-full">
@@ -43,15 +43,15 @@
               <%= render SnFilterable::CategoryComponent.new(title: t("shared.filterable.results_per_page"), open: @filtered.queries.dig("per").present?) do %>
                 <fieldset class="pt-2" x-data="{ wasInteracted: false }">
                   <% ([@filtered.items.default_per_page] | [10, 25, 50]).sort.each do |value| %>
-                    <div class="relative flex items-start px-4 transition-colors hover:bg-gray-200 text-gray-700 hover:text-gray-900">
+                    <div class="relative flex items-start px-4 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                       <div class="min-w-0 flex-1 flex-grow">
-                        <%= content_tag :label, value, class: "block py-2 pr-4 text-gray-600 select-none w-full cursor-pointer", for: "per-#{value}" %>
+                        <%= content_tag :label, value, class: "block py-2 pr-4 text-gray-600 dark:text-gray-400 select-none w-full cursor-pointer", for: "per-#{value}" %>
                       </div>
                       <div class="my-2 flex items-center">
                         <% selected_explcitly = value == @filtered.queries["per"].to_i %>
                         <% selected_by_default = @filtered.queries["per"].blank? && value == @filtered.items.default_per_page %>
                         <%= content_tag :input, "",
-                                        class: "focus:ring-purple-400 cursor-pointer h-5 w-5 text-purple-500 bg-purple-100 border-0",
+                                        class: "focus:ring-purple-400 dark:focus:ring-purple-600 cursor-pointer h-5 w-5 text-purple-500 dark:text-purple-400 bg-purple-100 dark:bg-purple-900 border-0",
                                         type: "radio",
                                         id: "per-#{value}",
                                         "x-data": { iteracted: selected_explcitly }.to_json,

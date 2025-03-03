@@ -1,11 +1,5 @@
 <% @filter[:filters].each_with_index do |sub_filter, index| %>
   <div class="relative flex items-start px-4 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-    <div class="min-w-0 flex-1 flex-grow">
-      <%= content_tag :label,
-                      sub_filter[:name],
-                      class: "block py-2 pr-4 text-gray-600 dark:text-gray-400 select-none w-full cursor-pointer",
-                      for: "filter-#{@filter[:filter_name]}-#{index}" %>
-    </div>
     <div class="my-2 flex items-center">
       <% if @filter[:multi] %>
         <%= content_tag :input, "",
@@ -30,6 +24,12 @@
                         "@click": "filteringForm.requestSubmit()"
         %>
       <% end %>
+    </div>
+    <div class="min-w-0 flex-1 flex-grow">
+      <%= content_tag :label,
+                      sub_filter[:name],
+                      class: "block py-2 pr-4 text-gray-600 dark:text-gray-400 select-none w-full cursor-pointer",
+                      for: "filter-#{@filter[:filter_name]}-#{index}" %>
     </div>
   </div>
 <% end %>

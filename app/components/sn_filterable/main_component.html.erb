@@ -34,7 +34,7 @@
                 <%= heroicon "x-mark", variant: :outline, options: { class: "h-6 w-6 text-grey-500 dark:text-gray-400" } %>
               </button>
             </div>
-            <div name="Filter Options" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" class="overflow-y-auto max-h-full">
+            <div name="Filter Options" role="menu" aria-orientation="vertical" aria-label="options-menu" class="overflow-y-auto max-h-full">
               <% @filters.each do |filter| %>
                 <%= render SnFilterable::CategoryComponent.new(title: filter[:title], open: @filtered.queries.dig("filter", filter.try(:[], :filter_name)).present?) do |c| %>
                   <% c.with_filter(filtered: @filtered, filter: filter) %>

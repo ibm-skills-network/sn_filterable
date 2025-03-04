@@ -1,7 +1,7 @@
 <%= content_tag :fieldset,
                 class: "w-full text-xs lg:text-sm app-word-break dark:bg-gray-800",
-                "x-data": { open: @open }.to_json do %>
-  <legend><%= @title %></legend>
+                "x-data": { open: @open }.to_json, 
+                "aria-label": @title do %>
   <button class="flex border-b dark:border-gray-700 justify-between w-full px-4 py-3 font-medium text-left text-gray-900 dark:text-white transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-gray-500 dark:focus-visible:ring-gray-400 focus-visible:ring-opacity-75"
           type="button"
           @click="open = !open">

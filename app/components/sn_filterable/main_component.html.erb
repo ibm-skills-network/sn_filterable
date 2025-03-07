@@ -6,6 +6,7 @@
                   "method": "get",
                   "data-turbo-frame": @frame_id,
                   "class": "relative",
+                  "aria-label": "Content filters",
                   "@submit": "filtersLoading = true" do %>
     <% @extra_params.each do |k, v| %>
       <%= content_tag :input, "", class: "hidden", type: "hidden", value: v, name: k %>

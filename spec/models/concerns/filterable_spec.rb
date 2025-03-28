@@ -393,6 +393,14 @@ RSpec.describe SnFilterable, type: :model do  # rubocop:disable RSpec/MultipleDe
       expect(filtered.instance_variable_get(:@queries)).to eq(empty_query_hash)
       expect(filtered.instance_variable_get(:@sort_scope)).to eq(nil)
       expect(filtered.instance_variable_get(:@sort_reversed)).to eq(false)
+      expect(filtered.instance_variable_get(:@extra_params)).to eq({})
+    end
+    
+    it "correctly stores extra_params", :aggregate_failures do
+      extra_params = { "tab" => "active", "view" => "list" }
+      filtered = BasicFilterableTestModel.filter(params: ActionController::Parameters.new, extra_params: extra_params)
+
+      expect(filtered.instance_variable_get(:@extra_params)).to eq(extra_params)
     end
 
     context "with @queries" do

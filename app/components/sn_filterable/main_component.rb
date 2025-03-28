@@ -34,6 +34,7 @@ module SnFilterable
       @show_sidebar = show_sidebar
       @update_url_on_submit = update_url_on_submit
       @extra_params = extra_params
+      @filtered.extra_params = extra_params if extra_params.present?
     end
 
     def search_field

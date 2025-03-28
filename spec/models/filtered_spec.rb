@@ -302,5 +302,33 @@ RSpec.describe Filtered, type: :model do
 
       expect(actual_result).to eq(expected_result)
     end
+    
+    it "includes extra_params in the generated URL" do
+      filtered = BasicFilterableTestModel.filter(params: ActionController::Parameters.new({ sort: "name" }), extra_params: { "tab" => "active", "view" => "list" })
+
+      actual_result = filtered.sort_url("/", "name")
+      url = actual_result[0]
+      state = actual_result[1]
+
+      expect(state).to eq(:asc)
+      expect(url).to include("sort=name")
+      expect(url).to include("order=desc")
+      expect(url).to include("tab=active")
+      expect(url).to include("view=list")
+    end
+    
+    it "properly merges extra_params with existing URL parameters" do
+      filtered = BasicFilterableTestModel.filter(params: ActionController::Parameters.new({ sort: "name" }), extra_params: { "tab" => "active" })
+
+      actual_result = filtered.sort_url("/?existing=param", "name")
+      url = actual_result[0]
+      state = actual_result[1]
+
+      expect(state).to eq(:asc)
+      expect(url).to include("existing=param")
+      expect(url).to include("sort=name")
+      expect(url).to include("order=desc")
+      expect(url).to include("tab=active") 
+    end
   end
 end

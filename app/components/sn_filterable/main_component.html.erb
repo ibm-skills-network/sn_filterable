@@ -18,7 +18,7 @@
           <% if search? %>
             <%= search %>
           <% else %>
-            <div class="col-span-2 col-start-2 md:ml-48 lg:ml-64 h-12 pointer-events-auto">
+            <div class="col-span-2 xl:col-span-1 col-start-1 h-12 pointer-events-auto">
               <%= render search_field %>
             </div>
           <% end %>
@@ -83,7 +83,7 @@
         <%= render SnFilterable::FilterButtonComponent.new(filtered: @filtered, filters: @filters) %>
       </div>
       <% if @search_filter_name.present? %>
-        <div class="col-span-2 col-start-2 md:ml-64 h-12 pointer-events-none"></div>
+        <div class="col-span-2 xl:col-span-1 col-start-1 h-12 pointer-events-none"></div>
       <% end %>
     </div>
 

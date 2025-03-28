@@ -26,8 +26,9 @@ module SnFilterable
       # @param [ActiveRecord::Relation] items Optional, the items to scope from the model
       # @param [String, Array, nil] default_sort Optional, similar to the `DEFAULT_SORT` constant, sets the default sort of items when no sorting parameter is set. Can be either a [String], which returns the sorting name or an [Array], where the first item is the sorting name and the second item is the sort direction (either `:asc` or `:desc`). Will take precedence over the `DEFAULT_SORT` constant.
       # @param [Boolean] pagination_enabled Optional, toggles pagination
+      # @param [Hash] extra_params Optional, allows for custom query parameters to be included in URLs
       # @return [Filtered] the filtered and sorted items
-      def filter(params:, items: where(nil), default_sort: nil, pagination_enabled: true)
+      def filter(params:, items: where(nil), default_sort: nil, pagination_enabled: true, extra_params: {})
         filter_params = filter_params(params)
         sort_params = sort_params(params)
         other_params = other_params(params, items)
@@ -35,7 +36,7 @@ module SnFilterable
         items = perform_filter(items, filter_params)
         items = items.page(other_params[:page]).per(other_params[:per]) if pagination_enabled
 
-        Filtered.new(self, items, generate_url_queries(filter_params, sort_params, other_params), sort_name, reverse_order)
+        Filtered.new(self, items, generate_url_queries(filter_params, sort_params, other_params), sort_name, reverse_order, extra_params)
       end
 
       private

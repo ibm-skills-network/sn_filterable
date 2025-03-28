@@ -7,19 +7,21 @@
 #
 # @see Filterable
 class Filtered
-  attr_accessor :items, :queries
+  attr_accessor :items, :queries, :extra_params
 
   # @param [Class] model_class The class of the ActiveRecord::Base subclass
   # @param [ActiveRecord::Relation] items The items sorted and filtered by [Filterable]
   # @param [Hash] queries A hash of the sorting / filtering parameters
   # @param [Symbol] sort_name The current sorting name
   # @param [Boolean] sort_reversed True when the current sorting order is reversed
-  def initialize(model_class, items, queries, sort_name, sort_reversed)
+  # @param [Hash] extra_params Optional hash of additional parameters to include in URLs
+  def initialize(model_class, items, queries, sort_name, sort_reversed, extra_params = {})
     @model_class = model_class
     @items = items
     @queries = queries
     @sort_name = sort_name
     @sort_reversed = sort_reversed
+    @extra_params = extra_params || {}
   end
 
   # Returns if any filters are active
@@ -161,6 +163,11 @@ class Filtered
   def modify_url_queries(url)
     uri = URI.parse(url)
     query = Rack::Utils.parse_nested_query(uri.query).deep_merge(@queries.deep_dup)
+
+    # Add extra_params to the URL
+    @extra_params.each do |key, value|
+      query[key.to_s] = value
+    end if @extra_params.present?
 
     yield(query) if block_given?
 

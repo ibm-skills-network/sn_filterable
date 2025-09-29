@@ -3,7 +3,7 @@
     <div class="my-2 flex items-center">
       <% if @filter[:multi] %>
         <%= content_tag :input, "",
-                        class: "focus:ring-purple-400 dark:focus:ring-purple-600 cursor-pointer h-5 w-5 text-purple-500 dark:text-purple-400 bg-purple-100 dark:bg-purple-900 border-0 rounded",
+                        class: "focus:ring-violet-400 dark:focus:ring-violet-600 cursor-pointer h-5 w-5 text-violet-500 dark:text-violet-400 bg-violet-100 dark:bg-violet-900 border-0 rounded",
                         type: "checkbox",
                         name: "filter[#{@filter[:filter_name]}][]",
                         value: sub_filter[:value],
@@ -14,7 +14,7 @@
         %>
       <% else %>
         <%= content_tag :input, "",
-                        class: "focus:ring-purple-400 dark:focus:ring-purple-600 cursor-pointer h-5 w-5 text-purple-500 dark:text-purple-400 bg-purple-100 dark:bg-purple-900 border-0",
+                        class: "focus:ring-violet-400 dark:focus:ring-violet-600 cursor-pointer h-5 w-5 text-violet-500 dark:text-violet-400 bg-violet-100 dark:bg-violet-900 border-0",
                         type: "radio",
                         name: "filter[#{@filter[:filter_name]}]",
                         value: sub_filter[:value],

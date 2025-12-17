@@ -23,7 +23,7 @@ module SnFilterable
 
       return nil if count.zero?
 
-      "\xA0(#{count})"
+      "\u00A0(#{count})"
     end
   end
 end

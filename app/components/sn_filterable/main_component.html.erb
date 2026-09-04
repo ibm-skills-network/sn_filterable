@@ -27,10 +27,10 @@
       <% if @show_sidebar %>
         <div class="mt-16 h-full pointer-events-auto">
           <div class="h-full" x-init="sidebarGapTarget = $el">
-            <div x-show="filtersPopupOpen" class="fixed top-0 left-0 right-0 bottom-0 z-10 sm:z-0 bg-gray-600 bg-opacity-75 dark:bg-gray-900 dark:bg-opacity-75 sm:hidden" @click="filtersPopupOpen = false" x-cloak></div>
+            <div x-show="filtersPopupOpen" class="fixed top-0 left-0 right-0 bottom-0 z-10 sm:z-0 bg-gray-600/75 dark:bg-gray-900/75 sm:hidden" @click="filtersPopupOpen = false" x-cloak></div>
             <div x-show="filtersPopupOpen" class="fixed bottom-0 h-2/3 z-10 sm:z-0 left-0 w-full bg-white dark:bg-gray-800 pt-4 sm:sticky sm:!block row-span-2 shrink-0 mr-4 self-start sm:top-16 lg:w-64 sm:w-52 sm:pt-2 sm:pb-6 sm:overflow-y-auto sm:h-[70vh] sm:max-h-[calc(100vh_-_5rem)]" x-cloak>
             <div class="absolute top-0 right-0 -mt-12 mb-2 mr-2" x-show="filtersPopupOpen">
-              <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white dark:focus:ring-gray-600" @click="filtersPopupOpen = false">
+              <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white dark:focus:ring-gray-600" @click="filtersPopupOpen = false">
                 <span class="sr-only">Close filters</span>
                 <%= heroicon "x-mark", variant: :outline, options: { class: "h-6 w-6 text-grey-500 dark:text-gray-400" } %>
               </button>

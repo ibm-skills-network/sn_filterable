@@ -15,7 +15,7 @@
               <span><%= filter[:name] %></span>
               <%= content_tag :a,
                               href: filter[:multi] ? remove_sub_filter_url(@filtered, filter[:parent], filter[:value], url: @url) : remove_filter_url(@filtered, filter[:parent], url: @url),
-                              class: "flex-shrink-0 ml-1 h-4 w-4 p-1 rounded-full inline-flex text-gray-400 hover:bg-gray-200 hover:text-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-300",
+                              class: "shrink-0 ml-1 h-4 w-4 p-1 rounded-full inline-flex text-gray-400 hover:bg-gray-200 hover:text-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-300",
                               "x-data": "filteringChip(#{filter.to_json})",
                               "@click": "$event.preventDefault(); onClick()" do %>
                 <span class="sr-only">Remove filter for Objects</span>

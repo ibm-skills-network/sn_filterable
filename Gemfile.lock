@@ -90,7 +90,7 @@ GEM
     concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
     crass (1.0.8)
-    date (3.4.1)
+    date (3.6.0)
     diff-lcs (1.6.2)
     drb (2.2.3)
     erb (6.0.4)
@@ -132,7 +132,7 @@ GEM
     loofah (2.25.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.19.5)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
@@ -145,14 +145,14 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     mysql2 (0.5.6)
-    net-imap (0.6.4.1)
+    net-imap (0.6.8)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.2)
+    net-protocol (0.4.0)
       timeout
-    net-smtp (0.5.1)
+    net-smtp (0.5.2)
       net-protocol
     nio4r (2.7.5)
     nokogiri (1.19.7-aarch64-linux-gnu)
